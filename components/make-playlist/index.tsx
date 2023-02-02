@@ -24,10 +24,10 @@ export default function MakePlaylist({playlistSettings, getPlaylistSettings} : p
             created_by: "Get from Spotify",
             tracks: [{       
                 id: "Get from Spotify",
-                name: "Get from Spotify",
-                artist: "Get from Spotify",
-                album: "Get from Spotify",
-                image: "Get from Spotify",
+                name: "Drain You",
+                artist: "Nirvana",
+                album: "Nevermind",
+                image: "/",
                 comments: [{
                     text: "This is an example of a comment.", 
                     author: "Comment author", 

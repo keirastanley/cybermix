@@ -17,7 +17,7 @@ export async function getPlaylistById(_id : string){
     const response = await fetch(`https://cybermix-backend.onrender.com/api/playlists/${_id}`)
     const data = await response.json()    
     console.log(data)    
-    return data.payload
+    return data.payload[0]
 }
 
 /** Add new playlist to database

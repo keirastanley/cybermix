@@ -1,4 +1,5 @@
 import { trackType } from "@/data/types"
+import Image from "next/image"
 
 type propsType = {
     track: trackType;
@@ -6,15 +7,13 @@ type propsType = {
 
 export default function AddSong({track} : propsType) {
     return <div className="add-song">
-    {/* <img src={track.album.images[2].url} alt={track.album.name}></img>
+        <Image src={track.image} alt={track.album} width={100} height={100}/>
         <div className="add-songs-info">
-            <p>{track.name} - {track.artists[0].name} 
+            <p>{track.name} - {track.artist} 
                 <br></br>
-                {track.album.name}
+                {track.album}
             </p>
         </div>
-    <button 
-        onClick={() => {context.addTracks(track.uri, playlist.id)}}>Add Song
-    </button> */}
+    <button>Add Song</button>
     </div>
 }
