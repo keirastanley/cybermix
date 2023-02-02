@@ -7,9 +7,9 @@ export default function Header() {
             <Image src="/cyber-mix-logo.png" alt="Cyber Mix logo" width={100} height={100}/>
             <div className={styles.header_links}>
                 <Link href="/">Home</Link>
-                <Link href="my-mixes">My mixes</Link>
-                <Link href="new-mix">New mix</Link>
-                <Link href="about">About</Link>
+                <Link href="/my-mixes">My mixes</Link>
+                <Link href="/new-mix">New mix</Link>
+                <Link href="/about">About</Link>
             </div>
     </div>
 }

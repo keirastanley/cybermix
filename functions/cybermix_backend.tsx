@@ -15,7 +15,8 @@ import { playlistType } from "@/data/types";
 */
 export async function getPlaylistById(_id : string){
     const response = await fetch(`https://cybermix-backend.onrender.com/api/playlists/${_id}`)
-    const data = await response.json()
+    const data = await response.json()    
+    console.log(data)    
     return data.payload
 }
 
