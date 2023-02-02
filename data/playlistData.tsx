@@ -22,7 +22,7 @@ export const playlistExample : playlistArrType = [
         }]
     }],
     date: "Date the playlist was made",
-    access: "Spotify usernames allowed access to the playlist"
+    access: ["Spotify usernames allowed access to the playlist"]
 },
 {
     _id: "Id on Mongodb",
@@ -45,6 +45,6 @@ export const playlistExample : playlistArrType = [
         }]
     }],
     date: "Date the playlist was made",
-    access: "Spotify usernames allowed access to the playlist"
+    access: ["Spotify usernames allowed access to the playlist"]
 },
 ]

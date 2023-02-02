@@ -1,3 +1,5 @@
+import { playlistType } from "@/data/types";
+import { getAllPlaylists, postPlaylist } from "@/functions/cybermix_backend";
 import { useEffect, useState } from "react";
 
 export default function NewMix(){
@@ -8,6 +10,36 @@ export default function NewMix(){
         const newPlaylistSettings = {...playlistSettings}
         newPlaylistSettings[event.target.name] = event.target.value
         setPlaylistSettings(newPlaylistSettings)
+    }
+
+    async function makeNewPlaylist(){
+        const d = new Date
+        const date = d.toString()
+        const newPlaylist : playlistType = {
+            spotify_id: "",
+            name: playlistSettings?.name || "A Cyber-Mix Playlist",
+            description: playlistSettings?.name || "Playlist made with Cyber-Mix.",
+            image: "/cyber-mix-logo.png",
+            link: "Get from Spotify",
+            created_by: "Get from Spotify",
+            tracks: [{       
+                id: "Get from Spotify",
+                name: "Get from Spotify",
+                artist: "Get from Spotify",
+                album: "Get from Spotify",
+                image: "Get from Spotify",
+                comments: [{
+                    text: "This is an example of a comment.", 
+                    author: "Comment author", 
+                    date: "Date of comment"
+                }]
+            }],
+            date: date,
+            access: ["Get from user"]
+        }
+        await postPlaylist(newPlaylist)
+        const playlists = await getAllPlaylists()
+        console.log(playlists)
     }
 
     return <div>
@@ -21,5 +53,6 @@ export default function NewMix(){
             <option>Public</option>
             <option>Private</option>
         </select>
+        <button onClick={makeNewPlaylist}>Make playlist</button>
 </div>
 }
