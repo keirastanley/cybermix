@@ -12,7 +12,6 @@ export default function MyMixes() {
     useEffect(() => {
         async function getPlaylists() {
             const playlistArray = await getAllPlaylists();
-            console.log(playlistArray)
             setPlaylists(playlistArray)
         } getPlaylists()
     }, [])

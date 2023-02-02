@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import { getPlaylistById } from "@/functions/cybermix_backend"
 import AddSong from "@/components/add-song"
 import Image from "next/image"
+import {v4 as uuidv4} from "uuid"
 
 export default function Playlist(){
     const [playlist, setPlaylist] = useState<playlistType>()
@@ -24,11 +25,6 @@ export default function Playlist(){
             setPlaylist(playlistObject)
         } getPlaylist()
     }, [])
-    //Get playlist by id fetch request goes here
-
-    useEffect(() => {
-        console.log(playlist)
-    }, [playlist])
 
     return playlist ?  
         <div>
@@ -37,7 +33,7 @@ export default function Playlist(){
                 <h4>{playlist.description}</h4>
                 <Image src={playlist.image} alt="Playlist image" width={100} height={100}/>
             </div>
-            {playlist?.tracks?.map(track => <AddSong track={track}/>)}
+            {playlist?.tracks?.map(track => <AddSong track={track} key={uuidv4()}/>)}
         </div> 
         : 
         <LoadingIcons.Audio fill="black" speed=".5" height="60px"/>
