@@ -2,12 +2,22 @@ import Link from "next/link"
 import { playlistExample } from "@/data/playlistData"
 import LoadingIcons from 'react-loading-icons'
 import {v4 as uuidv4} from "uuid"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { playlistArrType } from "@/data/types"
 import styles from "@/styles/playlists.module.css"
+import { getAllPlaylists } from "@/functions/cybermix_backend"
 
 export default function MyMixes() {
-    const [playlists, setPlaylists] = useState<playlistArrType>(playlistExample)
+    const [playlists, setPlaylists] = useState<playlistArrType>([])
+
+    useEffect(() => {
+        async function getPlaylists() {
+            const playlistArray = await getAllPlaylists();
+            console.log(playlistArray)
+            setPlaylists(playlistArray)
+        } getPlaylists()
+    }, [])
+
     return <>
         <h1>My mixes</h1>
         <div className={styles.playlists_container}>
