@@ -1,4 +1,4 @@
-export type playlistArrType = {
+export type playlistType = {
     _id: string,
     spotify_id: string,
     name: string,
@@ -20,4 +20,6 @@ export type playlistArrType = {
     }],
     date: string,
     access: string
-}[]
+}
+
+export type playlistArrType = playlistType[]
