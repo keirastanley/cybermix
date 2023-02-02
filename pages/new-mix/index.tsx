@@ -1,5 +1,5 @@
-import MakePlaylist from "@/components/make-playlist/MakePlaylist";
-import { useEffect, useState } from "react";
+import MakePlaylist from "@/components/make-playlist";
+import { useState } from "react";
 
 export default function NewMix(){
 

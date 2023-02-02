@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { playlistExample } from "@/data/playlistData"
 import LoadingIcons from 'react-loading-icons'
 import {v4 as uuidv4} from "uuid"
 import { useEffect, useState } from "react"

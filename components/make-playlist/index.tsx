@@ -1,6 +1,7 @@
 import { playlistType } from "@/data/types";
-import { getAllPlaylists, postPlaylist } from "@/functions/cybermix_backend";
-import { ChangeEventHandler, FocusEventHandler } from "react";
+import { postPlaylist } from "@/functions/cybermix_backend";
+import { useRouter } from "next/router";
+import { FocusEventHandler } from "react";
 
 type propsType = {
     playlistSettings: {[key: string]: string} | undefined;
@@ -9,6 +10,8 @@ type propsType = {
 
 export default function MakePlaylist({playlistSettings, getPlaylistSettings} : propsType){
 
+    const router = useRouter()
+    
     async function makeNewPlaylist(){
         const d = new Date
         const date = d.toString()
@@ -34,9 +37,8 @@ export default function MakePlaylist({playlistSettings, getPlaylistSettings} : p
             date: date,
             access: ["Get from user"]
         }
-        await postPlaylist(newPlaylist)
-        const playlists = await getAllPlaylists()
-        console.log(playlists)
+        const addedPlaylist = await postPlaylist(newPlaylist)
+        router.push(`/my-mixes/${addedPlaylist._id}`)
     }
 
     return <div>
