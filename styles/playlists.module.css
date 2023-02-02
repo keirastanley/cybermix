@@ -1,0 +1,27 @@
+
+.playlists_container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+  }
+  
+  .playlist {
+    border: 1px dashed black;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .playlist img {
+    width: 150px;
+  }
+  
+  .playlist_name_button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+  }

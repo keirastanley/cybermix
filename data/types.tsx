@@ -1,5 +1,6 @@
-export type playlistType = {
-    id: number,
+export type playlistArrType = {
+    _id: string,
+    spotify_id: string,
     name: string,
     description: string,
     image: string,
@@ -19,4 +20,4 @@ export type playlistType = {
     }],
     date: string,
     access: string
-}
+}[]
