@@ -1,5 +1,5 @@
 import { playlistType } from "@/data/types";
-import { postPlaylist } from "@/functions/cybermix_backend";
+import { postPlaylist } from "@/functions/requests";
 import { useRouter } from "next/router";
 import { FocusEventHandler } from "react";
 

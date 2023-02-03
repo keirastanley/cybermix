@@ -4,7 +4,7 @@ import {v4 as uuidv4} from "uuid"
 import { useEffect, useState } from "react"
 import { playlistArrType } from "@/data/types"
 import styles from "@/styles/playlists.module.css"
-import { getAllPlaylists } from "@/functions/cybermix_backend"
+import { getAllPlaylists } from "@/functions/requests"
 
 export default function MyMixes() {
     const [playlists, setPlaylists] = useState<playlistArrType>([])

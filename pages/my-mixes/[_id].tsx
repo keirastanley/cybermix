@@ -3,7 +3,7 @@ import { playlistExample } from "@/data/playlistData"
 import LoadingIcons from 'react-loading-icons'
 import { playlistType } from "@/data/types"
 import { useEffect, useState } from "react"
-import { getPlaylistById } from "@/functions/cybermix_backend"
+import { getPlaylistById } from "@/functions/requests"
 import AddSong from "@/components/add-song"
 import Image from "next/image"
 import {v4 as uuidv4} from "uuid"
