@@ -14,15 +14,10 @@ export default function App({ Component, pageProps }: AppProps) {
     async function getUserData() {
       if (localStorage.getItem('spotifyToken')) {
         const userData = await getCurrentUser()
-        console.log(userData)
         setUser(userData)
       }
     } getUserData()
   }, [])
-
-  useEffect(() => {
-    console.log(user)
-  }, [user])
 
   return <div className="page_container">
     <Header/>

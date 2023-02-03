@@ -1,7 +1,8 @@
-import { playlistType } from "@/data/types";
+import { playlistType, spotifyUserType } from "@/data/types";
 import { postPlaylist } from "@/functions/requests";
+import { getCurrentUser, makeSpotifyPlaylist } from "@/functions/spotify";
 import { useRouter } from "next/router";
-import { FocusEventHandler } from "react";
+import { FocusEventHandler, useEffect, useState } from "react";
 
 type propsType = {
     playlistSettings: {[key: string]: string} | undefined;
@@ -9,36 +10,53 @@ type propsType = {
 }
 
 export default function MakePlaylist({playlistSettings, getPlaylistSettings} : propsType){
-
     const router = useRouter()
+    const [user, setUser] = useState<spotifyUserType>()
+
+    useEffect(() => {
+        async function getUserData(){
+            const userData = await getCurrentUser()
+            setUser(userData)
+        } getUserData()
+    }, [])
     
     async function makeNewPlaylist(){
         const d = new Date
         const date = d.toString()
-        const newPlaylist : playlistType = {
-            spotify_id: "",
-            name: playlistSettings?.name || "A Cyber-Mix Playlist",
-            description: playlistSettings?.name || "Playlist made with Cyber-Mix.",
-            image: "/cyber-mix-logo.png",
-            link: "Get from Spotify",
-            created_by: "Get from Spotify",
-            tracks: [{       
-                id: "Get from Spotify",
-                name: "Drain You",
-                artist: "Nirvana",
-                album: "Nevermind",
-                image: "/",
-                comments: [{
-                    text: "This is an example of a comment.", 
-                    author: "Comment author", 
-                    date: "Date of comment"
-                }]
-            }],
-            date: date,
-            access: ["Get from user"]
-        }
-        const addedPlaylist = await postPlaylist(newPlaylist)
-        router.push(`/my-mixes/${addedPlaylist._id}`)
+        if (user) {
+            const addedSpotifyPlaylist = await makeSpotifyPlaylist(user.id, {
+                name: playlistSettings?.name || "A Cyber-Mix Playlist",
+                description: playlistSettings?.description || "Playlist made with Cyber-Mix.", 
+                settings: true
+            })
+            console.log(addedSpotifyPlaylist)
+            if (addedSpotifyPlaylist) {
+                const newPlaylist : playlistType = {
+                    spotify_id: addedSpotifyPlaylist.id,
+                    name: playlistSettings?.name || "A Cyber-Mix Playlist",
+                    description: playlistSettings?.description || "Playlist made with Cyber-Mix.",
+                    image: "/cyber-mix-logo.png",
+                    link: addedSpotifyPlaylist.external_urls.spotify,
+                    created_by: addedSpotifyPlaylist.owner.id,
+                    tracks: [{       
+                        id: "",
+                        name: "",
+                        artist: "",
+                        album: "",
+                        image: "",
+                        comments: [{
+                            text: "", 
+                            author: "", 
+                            date: ""
+                        }]
+                    }],
+                    date: date,
+                    access: [addedSpotifyPlaylist.owner.id]
+                }
+                const addedPlaylist = await postPlaylist(newPlaylist)
+                router.push(`/my-mixes/${addedPlaylist._id}`)
+            }
+            }
     }
 
     return <div>

@@ -138,7 +138,6 @@ export async function updateSpotifyImage(playlist_id : string, image : any){
  * @return The current user's data
  */
 export async function getCurrentUser(){
-    console.log("hi")
     spotify.setAccessToken(localStorage.getItem('spotifyToken'));
     return await spotify.getMe()
 } 
