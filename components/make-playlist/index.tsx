@@ -29,7 +29,6 @@ export default function MakePlaylist({playlistSettings, getPlaylistSettings} : p
                 description: playlistSettings?.description || "Playlist made with Cyber-Mix.", 
                 settings: true
             })
-            console.log(addedSpotifyPlaylist)
             if (addedSpotifyPlaylist) {
                 const newPlaylist : playlistType = {
                     spotify_id: addedSpotifyPlaylist.id,
@@ -65,11 +64,11 @@ export default function MakePlaylist({playlistSettings, getPlaylistSettings} : p
     <input onBlur={getPlaylistSettings} name="name"></input>
     <p>Description</p>
     <input onBlur={getPlaylistSettings} name="description"></input>
-    <p>Select a setting</p>
+    {/* <p>Select a setting</p>
     <select onBlur={getPlaylistSettings} name="setting">
         <option>Public</option>
         <option>Private</option>
-    </select>
+    </select> */}
     <button onClick={makeNewPlaylist}>Make playlist</button>
 </div>
 }
