@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 
 export default function Callback() {
 
-    const [user, setUser] = useState<string>()
     const [token, setToken] = useState<string>()
     const router = useRouter()
   
