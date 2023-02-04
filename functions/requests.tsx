@@ -52,7 +52,7 @@ export async function updatePlaylist(playlist : playlistType, update : {[key: st
 }
 
 export async function addTrackToPlaylist(playlist : playlistType, track : trackType){
-    const response = await fetch(`http://localhost:3001/api/playlists/${playlist._id}?action=add-track`,
+    const response = await fetch(`https://cybermix-backend.onrender.com/${playlist._id}?action=add-track`,
     {
         method: 'PATCH',
         headers: {
@@ -65,7 +65,7 @@ export async function addTrackToPlaylist(playlist : playlistType, track : trackT
 }
 
 export async function deleteTrackFromPlaylist(playlist : playlistType, track : trackType){
-    const response = await fetch(`http://localhost:3001/api/playlists/${playlist._id}?action=delete`,
+    const response = await fetch(`https://cybermix-backend.onrender.com/${playlist._id}?action=delete`,
     {
         method: 'PATCH',
         headers: {

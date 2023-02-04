@@ -1,6 +1,7 @@
 import { searchTracksSpotify } from "@/functions/spotify";
 import { SetStateAction, useState } from "react"
 import { playlistType, trackType } from "@/data/types";
+import { v4 as uuidv4 } from "uuid";
 import styles from "@/styles/search.module.css"
 import Song from "../song";
 
@@ -51,7 +52,7 @@ export default function Search({playlistData, handleAction} : propsObj){
     </button>
     <div className={styles.search_results}>
         {results.length > 0 ? results.map(track => 
-            <Song track={track} action="Add song" handleAction={handleAction}/>) : null}
+            <Song track={track} action="Add song" handleAction={handleAction} key={uuidv4()}/>) : null}
     </div>
 </div>
 }
