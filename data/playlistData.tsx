@@ -19,7 +19,8 @@ export const playlistExample : playlistArrType = [
             text: "Comment text", 
             author: "Comment author", 
             date: "Comment date"
-        }]
+        }],
+        uri: "Uri"
     }],
     date: "Date the playlist was made",
     access: ["Spotify usernames allowed access to the playlist"]
@@ -42,7 +43,8 @@ export const playlistExample : playlistArrType = [
             text: "Comment text", 
             author: "Comment author", 
             date: "Comment date"
-        }]
+        }],
+        uri: "Uri"
     }],
     date: "Date the playlist was made",
     access: ["Spotify usernames allowed access to the playlist"]
