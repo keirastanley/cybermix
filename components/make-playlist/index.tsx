@@ -37,18 +37,7 @@ export default function MakePlaylist({playlistSettings, getPlaylistSettings} : p
                     image: "/cyber-mix-logo.png",
                     link: addedSpotifyPlaylist.external_urls.spotify,
                     created_by: addedSpotifyPlaylist.owner.id,
-                    tracks: [{       
-                        id: "",
-                        name: "",
-                        artist: "",
-                        album: "",
-                        image: "",
-                        comments: [{
-                            text: "", 
-                            author: "", 
-                            date: ""
-                        }]
-                    }],
+                    tracks: [],
                     date: date,
                     access: [addedSpotifyPlaylist.owner.id]
                 }

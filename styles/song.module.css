@@ -1,0 +1,17 @@
+.song_container {
+    display: flex;
+    align-items: center;
+}
+
+.song_info {
+    display: flex;
+    height: 64px;
+    width: 80%;
+    flex-direction: column;
+  }
+  
+  .song_info p {
+    font-size: 12px;
+    text-align: left;
+    margin-left: 15px;
+  }

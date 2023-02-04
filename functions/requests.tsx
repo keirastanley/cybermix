@@ -1,4 +1,4 @@
-import { playlistType } from "@/data/types";
+import { playlistType, trackType } from "@/data/types";
 
 /** Get all playlists from database
  * @return An array of all playlists
@@ -41,7 +41,7 @@ export async function postPlaylist(playlist : playlistType) {
  * @param update The property and value of the item to be updated
  */
 export async function updatePlaylist(playlist : playlistType, update : {[key: string]: string}) {
-    await fetch(`https://cybermix-backend.onrender.com/api/playlists/${playlist._id}`,
+    await fetch(`https://cybermix-backend.onrender.com/api/playlists/${playlist._id}?action=update`,
     {
         method: 'PATCH',
         headers: {
@@ -49,4 +49,30 @@ export async function updatePlaylist(playlist : playlistType, update : {[key: st
         },
         body: JSON.stringify(update)
     })
+}
+
+export async function addTrackToPlaylist(playlist : playlistType, track : trackType){
+    const response = await fetch(`http://localhost:3001/api/playlists/${playlist._id}?action=add-track`,
+    {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(track)
+    })
+    const data = await response.json()
+    return data.payload[0];
+}
+
+export async function deleteTrackFromPlaylist(playlist : playlistType, track : trackType){
+    const response = await fetch(`http://localhost:3001/api/playlists/${playlist._id}?action=delete`,
+    {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({id: track.id})
+    })
+    const data = await response.json()
+    return data.payload[0];
 }

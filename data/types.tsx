@@ -8,7 +8,8 @@ export type trackType = {
         text: string, 
         author: string, 
         date: string
-    }]
+    }],
+    uri: string
 }
 
 export type playlistType = {
@@ -35,18 +36,18 @@ export type spotifyUserType = {
         filter_locked: boolean
     },
     external_urls: {
-        spotify: string
+      spotify: string;
     },
     followers?: {
         href: string, total: number
     } | undefined,
     href: string,
     id: string,
-    images?: {
-        height?: number;
-        url: string;
-        width?: number;
-      }[] | undefined,
+    images?: {    
+      height?: number;
+      url: string;
+      width?: number;
+    }[] | undefined,
     product: string,
     type: string
     uri: string

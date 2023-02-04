@@ -1,0 +1,13 @@
+.search_container {
+    display: flex;
+    border: 1px dashed #3D3A33;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.search_results {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

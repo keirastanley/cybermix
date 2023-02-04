@@ -92,8 +92,7 @@ export async function addTrackSpotifyPlaylist(uri : string, playlist_id : string
     spotify.setAccessToken(localStorage.getItem('spotifyToken'));
     if (window.confirm(`Are you sure you want to remove ${name}?`)) {
         await spotify.removeTracksFromPlaylist(playlist_id, [uri])
-        let updatedPlaylist = await spotify.getPlaylist(playlist_id)
-        return updatedPlaylist;
+        return true;
     }
 }
 
