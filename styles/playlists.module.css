@@ -24,4 +24,20 @@
     align-items: center;
     justify-content: space-between;
     width: 90%;
+    margin-left: 10%;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .buttons button {
+    font-size: 18px;
+    text-align: center;
+    background-color:transparent;
+    border: none;
+    padding: 3px;
+    cursor: pointer;
   }

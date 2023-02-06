@@ -1,0 +1,16 @@
+.about_page {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    font-family: "Indie Flower";
+}
+
+.about_page a {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.main_text a {
+    cursor: pointer;
+}

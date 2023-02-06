@@ -41,7 +41,7 @@ export async function postPlaylist(playlist : playlistType) {
  * @param update The property and value of the item to be updated
  */
 export async function updatePlaylist(playlist : playlistDataType, update : {[key: string]: string}) {
-    await fetch(`https://cybermix-backend.onrender.com/api/playlists/${playlist._id}?action=update`,
+    const response = await fetch(`https://cybermix-backend.onrender.com/api/playlists/${playlist._id}?action=update`,
     {
         method: 'PATCH',
         headers: {
@@ -49,6 +49,8 @@ export async function updatePlaylist(playlist : playlistDataType, update : {[key
         },
         body: JSON.stringify(update)
     })
+    const data = await response.json()
+    return data.payload[0]
 }
 
 export async function addTrackToPlaylist(playlist : playlistDataType, track : trackType){

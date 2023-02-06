@@ -13,6 +13,18 @@ module.exports = {
         port: '',
         pathname: '/image/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'mosaic.scdn.co',
+        port: '',
+        pathname: '/640/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'media1.giphy.com',
+        port: '',
+        pathname: '/media/**',
+      },
     ],
   },
 }

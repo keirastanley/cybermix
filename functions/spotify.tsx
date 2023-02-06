@@ -2,8 +2,8 @@ import SpotifyWebApi from "spotify-web-api-js";
 
 export const authEndpoint = "https://accounts.spotify.com/authorize";
 
-const redirectUri = "https://cybermix.vercel.app/callback"
-//const redirectUri = "http://localhost:3000/callback"
+// const redirectUri = "https://cybermix.vercel.app/callback"
+const redirectUri = "http://localhost:3000/callback"
 
 const clientId = "593d7fe3d674485392669714b0241c96"
 
@@ -112,12 +112,12 @@ export async function searchTracksSpotify(query : string){
  * @param data object {name: string, description: string, public: boolean}
  * @return The updated playlist
  */
-export async function updateSpotifyPlaylistDetails(playlist_id : string, data : {name: string, description: string, setting: boolean}){
+export async function updateSpotifyPlaylistDetails(playlist_id : string, data : {name: string, description: string, public: boolean}){
     spotify.setAccessToken(localStorage.getItem('spotifyToken'));
     const updates = {
         name: data.name, 
         description: data.description, 
-        public: data.setting
+        public: data.public
     }
     await spotify.changePlaylistDetails(playlist_id, updates)
     const result = await spotify.getPlaylist(playlist_id)
