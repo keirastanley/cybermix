@@ -6,6 +6,8 @@ export default function Callback() {
 
     const [token, setToken] = useState<string>()
     const router = useRouter()
+
+    console.log("hi")
   
     useEffect(() => {
         /**
@@ -22,9 +24,9 @@ export default function Callback() {
         getSpotifyToken()
       }, []);
     
-    useEffect(() => {
-        if (token) {
-            router.push("/")
-        }
-    }, [token])
+    // useEffect(() => {
+    //     if (token) {
+    //         router.push("/")
+    //     }
+    // }, [token])
 }

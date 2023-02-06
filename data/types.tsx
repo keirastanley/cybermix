@@ -13,7 +13,6 @@ export type trackType = {
 }
 
 export type playlistType = {
-    _id?: string,
     spotify_id: string,
     name: string,
     description: string,
@@ -25,7 +24,11 @@ export type playlistType = {
     access: string[]
 }
 
-export type playlistArrType = playlistType[]
+export interface playlistDataType extends playlistType {
+    _id: string,
+}
+
+export type playlistArrType = playlistDataType[]
 
 export type spotifyUserType = {
     country: string,

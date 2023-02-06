@@ -1,4 +1,4 @@
-import { playlistType, trackType } from "@/data/types";
+import { playlistType, playlistDataType, trackType } from "@/data/types";
 
 /** Get all playlists from database
  * @return An array of all playlists
@@ -40,7 +40,7 @@ export async function postPlaylist(playlist : playlistType) {
  * @param playlist See playlistType in "@data/types.tsx"
  * @param update The property and value of the item to be updated
  */
-export async function updatePlaylist(playlist : playlistType, update : {[key: string]: string}) {
+export async function updatePlaylist(playlist : playlistDataType, update : {[key: string]: string}) {
     await fetch(`https://cybermix-backend.onrender.com/api/playlists/${playlist._id}?action=update`,
     {
         method: 'PATCH',
@@ -51,8 +51,8 @@ export async function updatePlaylist(playlist : playlistType, update : {[key: st
     })
 }
 
-export async function addTrackToPlaylist(playlist : playlistType, track : trackType){
-    const response = await fetch(`https://cybermix-backend.onrender.com/${playlist._id}?action=add-track`,
+export async function addTrackToPlaylist(playlist : playlistDataType, track : trackType){
+    const response = await fetch(`https://cybermix-backend.onrender.com/api/playlists/${playlist._id}?action=add-track`,
     {
         method: 'PATCH',
         headers: {
@@ -64,8 +64,8 @@ export async function addTrackToPlaylist(playlist : playlistType, track : trackT
     return data.payload[0];
 }
 
-export async function deleteTrackFromPlaylist(playlist : playlistType, track : trackType){
-    const response = await fetch(`https://cybermix-backend.onrender.com/${playlist._id}?action=delete`,
+export async function deleteTrackFromPlaylist(playlist : playlistDataType, track : trackType){
+    const response = await fetch(`https://cybermix-backend.onrender.com/api/playlists/${playlist._id}?action=delete`,
     {
         method: 'PATCH',
         headers: {
@@ -75,4 +75,16 @@ export async function deleteTrackFromPlaylist(playlist : playlistType, track : t
     })
     const data = await response.json()
     return data.payload[0];
+}
+
+export async function deletePlaylistById(id : string){
+    const response = await fetch(`https://cybermix-backend.onrender.com/api/playlists/${id}`,
+    {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+    const data = await response.json()
+    console.log(data)
 }

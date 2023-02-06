@@ -138,5 +138,11 @@ export async function updateSpotifyImage(playlist_id : string, image : any){
  */
 export async function getCurrentUser(){
     spotify.setAccessToken(localStorage.getItem('spotifyToken'));
-    return await spotify.getMe()
-} 
+    const userData = await spotify.getMe()
+    return userData
+}
+
+export async function deleteSpotifyPlaylist(id : string){
+    spotify.setAccessToken(localStorage.getItem('spotifyToken'));
+    await spotify.unfollowPlaylist(id)
+}

@@ -1,8 +1,8 @@
-import { playlistType, spotifyUserType } from "@/data/types";
+import { FocusEventHandler, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import { postPlaylist } from "@/functions/requests";
 import { getCurrentUser, makeSpotifyPlaylist } from "@/functions/spotify";
-import { useRouter } from "next/router";
-import { FocusEventHandler, useEffect, useState } from "react";
+import { playlistType, spotifyUserType } from "@/data/types";
 
 type propsType = {
     playlistSettings: {[key: string]: string} | undefined;

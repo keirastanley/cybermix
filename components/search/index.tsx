@@ -1,17 +1,15 @@
+import { SetStateAction, useState } from "react";
 import { searchTracksSpotify } from "@/functions/spotify";
-import { SetStateAction, useState } from "react"
-import { playlistType, trackType } from "@/data/types";
 import { v4 as uuidv4 } from "uuid";
-import styles from "@/styles/search.module.css"
 import Song from "../song";
+import { trackType } from "@/data/types";
+import styles from "@/styles/search.module.css"
 
 type propsObj = {
-    playlistData: playlistType;
     handleAction: Function;
 }
 
-export default function Search({playlistData, handleAction} : propsObj){
-    const [playlist, setPlaylist] = useState(playlistData)
+export default function Search({handleAction} : propsObj){
     const [query, setQuery] = useState("")
     const [results, setResults] = useState<trackType[]>([])
 
@@ -42,17 +40,19 @@ export default function Search({playlistData, handleAction} : propsObj){
 	}
 
     return <div className={styles.search_container}>
-    <h2>Add some songs</h2>
-    <input 
-        onChange={handleQuery} 
-        placeholder="Search for songs">
-    </input>
-    <button 
-        onClick={searchTracks}>Search
-    </button>
-    <div className={styles.search_results}>
-        {results.length > 0 ? results.map(track => 
-            <Song track={track} action="Add song" handleAction={handleAction} key={uuidv4()}/>) : null}
-    </div>
+        <h2>Add some songs</h2>
+        <div className={styles.search_input}>
+            <input 
+                onChange={handleQuery} 
+                placeholder="Search for songs">
+            </input>
+            <button 
+                onClick={searchTracks}>Search
+            </button>
+        </div>
+        <div className={styles.search_results}>
+            {results.length > 0 ? results.map(track => 
+                <Song track={track} action="Add song" handleAction={handleAction} key={uuidv4()}/>) : null}
+        </div>
 </div>
 }

@@ -1,18 +1,19 @@
-import { useRouter } from "next/router"
-import { playlistExample } from "@/data/playlistData"
-import LoadingIcons from 'react-loading-icons'
-import { playlistType, trackType } from "@/data/types";
 import { useEffect, useState } from "react"
-import { deleteTrackFromPlaylist, getPlaylistById } from "@/functions/requests"
-import Song from "@/components/song"
+import { useRouter } from "next/router"
 import Image from "next/image"
-import {v4 as uuidv4} from "uuid"
 import Search from "@/components/search"
+import Song from "@/components/song"
+import LoadingIcons from 'react-loading-icons'
+import { deleteTrackFromPlaylist, getPlaylistById, addTrackToPlaylist } from "@/functions/requests"
 import { addTrackSpotifyPlaylist, deleteTrackSpotify } from "@/functions/spotify";
-import { addTrackToPlaylist } from "@/functions/requests";
+import { playlistDataType, trackType } from "@/data/types";
+import {v4 as uuidv4} from "uuid"
+import styles from "@/styles/playlist.module.css"
+
+
 
 export default function Playlist(){
-    const [playlist, setPlaylist] = useState<playlistType>()
+    const [playlist, setPlaylist] = useState<playlistDataType>()
     const router = useRouter()
 
     useEffect(() => {
@@ -51,14 +52,18 @@ export default function Playlist(){
     }
 
     return playlist ?
-        <div>
-            <div>
-                <h3>{playlist.name}</h3>
-                <h4>{playlist.description}</h4>
-                <Image src={playlist.image} alt="Playlist image" width={100} height={100}/>
+        <div className={styles.edit_playlist_container}>
+            <Search handleAction={handleAction}/>
+            <div className={styles.playlist_container}>
+                <div className={styles.playlist_details}>
+                    <h3>{playlist.name}</h3>
+                    <h4>{playlist.description}</h4>
+                    <Image src={playlist.image} alt="Playlist image" width={120} height={120}/>
+                </div>
+                <div className={styles.playlist_tracks}>
+                    {playlist.tracks.length > 0 ? playlist.tracks.map(track => <Song track={track} action="Remove" handleAction={handleAction} key={uuidv4()}/>) : null}
+                </div>
             </div>
-            {playlist.tracks.length > 0 ? playlist.tracks.map(track => <Song track={track} action="Remove" handleAction={handleAction} key={uuidv4()}/>) : null}
-            <Search playlistData={playlist} handleAction={handleAction}/>
         </div> 
         : 
         <LoadingIcons.Audio fill="black" speed=".5" height="60px"/>

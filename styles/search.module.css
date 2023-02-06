@@ -4,10 +4,37 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    width: 45%;
+    min-width: 310px;
+}
+
+.search_input {
+    padding: 10px;
 }
 
 .search_results {
     display: flex;
+    margin-top: 30px;
     flex-direction: column;
     gap: 10px;
+    overflow-y: auto;
+}
+
+@media only screen and (min-width: 550px) {
+    .search_results {
+        height: 40vh;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .search_results {
+        height: max-content;
+        max-height: 40vh;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .search_results {
+        gap: 30px;
+    }
 }

@@ -8,10 +8,16 @@
     height: 64px;
     width: 80%;
     flex-direction: column;
+    justify-content: center;
   }
   
   .song_info p {
-    font-size: 12px;
+    font-size: 14px;
     text-align: left;
     margin-left: 15px;
+    font-family: 'Indie Flower';
+  }
+
+  .song_info p i {
+    font-size: 12px;
   }
