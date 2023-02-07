@@ -85,5 +85,5 @@ export default function Playlist({user} : any) {
     return playlist ? view === "view" ? <ViewPlaylist playlist={playlist} setView={setView}/> :
         <EditPlaylist user={user} playlist={playlist} handleAction={handleAction} updatePlaylistDetails={updatePlaylistDetails} saveUpdates={saveUpdates} addCommentToTrack={addCommentToTrack} setView={setView}/>
         :
-        <Loader/>
+        <Loader text="Just a moment..."/>
 }
