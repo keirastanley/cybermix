@@ -9,7 +9,7 @@ import { getTokenFromUrl } from "@/functions/spotify";
 import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }: AppProps) {
-
+  const router = useRouter()
   const [token, setToken] = useState<string>()
   const [user, setUser] = useState<spotifyUserType>()
 
@@ -43,6 +43,10 @@ export default function App({ Component, pageProps }: AppProps) {
       }
     } getUserData()
   }, [token])
+
+  useEffect(() =>{
+    router.push('/my-mixes')
+  }, [user])
 
   return <div className="page_container">
     <Header/>
