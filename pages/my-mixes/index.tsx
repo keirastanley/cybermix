@@ -55,7 +55,7 @@ export default function MyMixes({user} : propsObj) {
     return user ? <>
         {/* <h1>My mixes</h1> */}
         <div className={styles.playlists_container}>
-          {playlists.length > 0 ? playlists.map(el => deleting.id === el._id ? deleting.done ? <p>Poof! Gone!</p> : <Loader text="Deleting..." key={uuidv4()}/> :
+          {playlists.length > 0 ? playlists.map(el => deleting.id === el._id ? deleting.done ? <p key={uuidv4()}>Poof! Gone!</p> : <Loader text="Deleting..." key={uuidv4()}/> :
                 <Link href={`/my-mixes/${el._id}`}>
                 <div className={styles.playlist} key={uuidv4()}>
                 <div className={styles.playlist_name_button}>
