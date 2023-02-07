@@ -9,6 +9,7 @@ import { use, useState } from "react";
 import {CgMoreO} from "react-icons/cg"
 import { useRouter } from "next/router";
 import Link from "next/link"
+import Comment from "@/components/comment"
 
 type propsType = {
     track: trackType;
@@ -57,7 +58,13 @@ export default function Song({track, action, handleAction, addCommentToTrack, us
     }
 
     function Comments() {
-        return <div className={styles.comment_container}>{track.comments ? track.comments.map(comment => comment.text ? <ul key={uuidv4()}><li className={styles.comment_text}>{comment.text}</li><li>{comment.author}</li><li>{comment.date}</li></ul> : null) : null}</div>
+        return <div className={styles.comment_container}>
+            {track.comments ? track.comments.map(comment => 
+                comment.text ? 
+                    <Comment key={uuidv4()} comment={comment}/> 
+                        : null) 
+                    : null}
+                </div>
     }
 
     return <>

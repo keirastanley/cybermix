@@ -9,6 +9,7 @@ import Loader from "@/components/loader"
 import styles from "@/styles/track.module.css"
 import {TbPlaylist} from "react-icons/tb"
 import {v4 as uuidv4} from "uuid"
+import Comment from "@/components/comment"
 
 export default function SongPage() {
     const [playlists, setPlaylists] = useState<playlistDataType[]>()
@@ -56,12 +57,8 @@ export default function SongPage() {
         {track.comments ? 
         track.comments.map((comment: { text: string; author: string; date: string }) => 
             comment.text ? 
-                <ul className={styles.comment} key={uuidv4()}>
-                    <li className={styles.comment_text}>{comment.text}</li>
-                    <li className={styles.comment_info}>{comment.author}</li>
-                    <li className={styles.comment_info}>{comment.date}</li>
-                </ul> : null) : null}
+                <Comment key={uuidv4()} comment={comment}/> : 
+                    null) : null}
         </div>
-    
     </div> : <Loader text="Just a moment..."/>
 }

@@ -4,6 +4,7 @@
     gap: 20px;
     align-items: flex-start;
     width: 40%;
+    border: 1px dashed black;
 }
 
 .playlist_tracks {
@@ -17,7 +18,9 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start ;
+    justify-content: space-between;
     gap: 10px;
+    height: 200px;
 }
 
 .main_details_button {
@@ -32,4 +35,11 @@
     font-size: 25px;
     border: none;
     background-color: transparent;
+    cursor: pointer;
+}
+
+.playlist_link {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }

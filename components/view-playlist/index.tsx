@@ -4,6 +4,7 @@ import Song from "../song"
 import { playlistDataType } from "@/data/types"
 import styles from "@/styles/playlist.module.css"
 import { v4 as uuidv4 } from "uuid"
+import {RiExternalLinkFill} from "react-icons/ri"
 
 type propsObj = {
     playlist: playlistDataType,
@@ -20,7 +21,7 @@ export default function ViewPlaylist({playlist, setView} : propsObj) {
                 <h1>{playlist.name}</h1>
                 <h3>{playlist.description}</h3>
                 <h3>Made by {playlist.created_by} on {playlist.date.split(" ").slice(0, 4).join(" ")}</h3>
-                <a href={playlist.link}>Play on Spotify</a>
+                <a href={playlist.link} className={styles.playlist_link}><RiExternalLinkFill/> Play on Spotify</a>
             </div>
         </div>
         <div className={styles.playlist_tracks}>

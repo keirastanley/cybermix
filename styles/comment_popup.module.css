@@ -8,6 +8,7 @@
     background-repeat: no-repeat;
     width: 270px;
     height: 170px;
+    gap: 10px;
     align-items: center;
 }
 
@@ -16,14 +17,16 @@
     background-color: #e6e4d8;
     font-size: 18px;
     align-self: flex-end;
-    margin-right: 30px;
+    align-self: center;
 }
 
-.content input {
+.content textarea {
     width: 200px;
-    height: 30px;
-    margin-top: 15px;
-    background-color: rgba(255,255,255,0.5)
+    margin-top: 10px;
+    height: 75px;
+    background-color: rgba(255,255,255,0.5);
+    border: none;
+    font-size: 12px;
 }
 
 .modal>.close {
@@ -44,12 +47,12 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .save_button {
     background-color: #d5cebc;
     border: none;
-    margin-top: 10px;
     font-size: 23px;
+    height: 20px;
 }

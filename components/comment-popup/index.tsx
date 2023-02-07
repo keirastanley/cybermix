@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import Popup from "reactjs-popup"
-import styles from "@/styles/comment.module.css"
+import styles from "@/styles/comment_popup.module.css"
 import {VscSaveAs} from "react-icons/vsc"
 import {CiEdit} from "react-icons/ci"
 import {BiCommentAdd} from "react-icons/bi"
 import {FaRegCommentDots} from "react-icons/fa"
-import { createNoSubstitutionTemplateLiteral } from "typescript";
 
 export default function CommentPopup({user, track, addCommentToTrack} : any){
     const [isOpen, setIsOpen] = useState(false)

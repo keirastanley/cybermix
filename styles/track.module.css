@@ -6,6 +6,8 @@
     padding: 30px;
     height: 100%;
     border: 1px dashed black;
+    margin-top: 20px;
+    margin-bottom: 40px;
 }
 
 .track_container ul {
@@ -37,22 +39,6 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
-}
-
-.comment {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-left: 20px;
-}
-
-.comment_text {
-    font-size: 20px;
-}
-
-.comment_info {
-    /* font-family: "Indie Flower"; */
-    font-size: 15px;
 }
 
 .track_main {
