@@ -8,6 +8,7 @@ import Link from "next/link"
 import Loader from "@/components/loader"
 import styles from "@/styles/track.module.css"
 import {TbPlaylist} from "react-icons/tb"
+import {v4 as uuidv4} from "uuid"
 
 export default function SongPage() {
     const [playlists, setPlaylists] = useState<playlistDataType[]>()
@@ -47,7 +48,7 @@ export default function SongPage() {
                     <h4>{track.album}</h4>
                     <h4>{track.release}</h4>
                 </div>
-                <ul>{playlists ? playlists.map(result => <Link href={`/my-mixes/${result._id}`}><li className={styles.playlist_li}><TbPlaylist/>{result.name}</li></Link>) : null}</ul>
+                <ul>{playlists ? playlists.map(result => <Link href={`/my-mixes/${result._id}`} key={uuidv4()}><li className={styles.playlist_li}><TbPlaylist/>{result.name}</li></Link>) : null}</ul>
             </div>
             <Image src={track.image} alt={track.name} width={200} height={200}/>
         </div>
