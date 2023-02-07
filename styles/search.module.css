@@ -8,8 +8,26 @@
     min-width: 310px;
 }
 
-.search_input {
-    padding: 10px;
+.search_input_section {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 10px;
+    width: 70%;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    padding: 3px;
+}
+
+.search_input_section button {
+    border: none;
+    background-color: transparent;
+    font-size: 17px;
+    width: 30px;
+}
+
+.search_input{
+    border: none;
 }
 
 .search_results {

@@ -18,6 +18,12 @@ export default function Search({handleAction} : propsObj){
 		setQuery(event.target.value)
 	}
 
+    function test(event : any){
+        if (event.key === "Enter") {
+            searchTracks()
+        }
+    }
+
     async function searchTracks() {
 		const response = await searchTracksSpotify(query);
         const resultsArr = []
@@ -38,9 +44,11 @@ export default function Search({handleAction} : propsObj){
 
     return <div className={styles.search_container}>
         <h2>Add some songs</h2>
-        <div className={styles.search_input}>
+        <div className={styles.search_input_section}>
             <input 
+                className={styles.search_input}
                 onChange={handleQuery} 
+                onKeyDown={test}
                 placeholder="Search for songs">
             </input>
             <button 
