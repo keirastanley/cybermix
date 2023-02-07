@@ -30,6 +30,10 @@
     font-size: 12px;
   }
 
+  .song_info > button {
+    font-size: 20px;
+  }
+
   .comment_container {
     border: 1px dashed black;
     display: flex;
