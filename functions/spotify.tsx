@@ -112,12 +112,13 @@ export async function searchTracksSpotify(query : string){
  * @param data object {name: string, description: string, public: boolean}
  * @return The updated playlist
  */
-export async function updateSpotifyPlaylistDetails(playlist_id : string, data : {name: string, description: string, public: boolean}){
+export async function updateSpotifyPlaylistDetails(playlist_id : string, data : {[key: string] : string | boolean}){
     spotify.setAccessToken(localStorage.getItem('spotifyToken'));
-    const updates = {
-        name: data.name, 
-        description: data.description, 
-        public: data.public
+    let updates : {[key : string] : string | boolean} = {}
+    for (const property in data) {
+        if (data[property]){
+            updates[property] = data[property]
+        }
     }
     await spotify.changePlaylistDetails(playlist_id, updates)
     const result = await spotify.getPlaylist(playlist_id)
@@ -145,4 +146,10 @@ export async function getCurrentUser(){
 export async function deleteSpotifyPlaylist(id : string){
     spotify.setAccessToken(localStorage.getItem('spotifyToken'));
     await spotify.unfollowPlaylist(id)
+}
+
+export async function getSpotifyTrack(id : string) {
+    spotify.setAccessToken(localStorage.getItem('spotifyToken'));
+    const track = await spotify.getTrack(id)
+    return track;
 }

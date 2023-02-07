@@ -90,3 +90,16 @@ export async function deletePlaylistById(id : string){
     const data = await response.json()
     console.log(data)
 }
+
+export async function addComment(playlist : playlistDataType, track_id : string, comment : {text: string, author: string, date: string}){
+    const response = await fetch(`https://cybermix-backend.onrender.com/api/playlists/${playlist._id}?action=comment`,
+    {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify([{track_id: track_id}, comment])
+    })
+    const data = await response.json()
+    return data.payload[0];
+}

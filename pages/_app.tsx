@@ -44,10 +44,6 @@ export default function App({ Component, pageProps }: AppProps) {
     } getUserData()
   }, [token])
 
-  useEffect(() => {
-    console.log(user)
-  }, [user])
-
   return <div className="page_container">
     <Header/>
     {user ? <>

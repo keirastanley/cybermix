@@ -1,49 +1,35 @@
-.edit_playlist_container {
-    display: flex;
-    width: 60%;
-    justify-content: space-around;
-    padding: 20px;
-    height: 75vh;
-}
-
-.edit_playlist_container button {
-    width: 80px;
-}
-
 .playlist_container {
-    border: 1px dashed #3D3A33;
-    width: 45%;
-    padding: 20px;
-    min-width: 310px;
-    /* background: url(/cassette-case-flipped.png);
-    background-size: contain;
-    background-repeat: no-repeat; */
-}
-
-.playlist_details {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 20px;
+    align-items: flex-start;
+    width: 40%;
 }
 
 .playlist_tracks {
     display: flex;
-    margin-top: 30px;
     flex-direction: column;
     gap: 10px;
-    height: 43vh;
-    overflow-y: auto;
+    align-self: center;
 }
 
-@media only screen and (max-width: 500px) {
-    .edit_playlist_container {
-        flex-wrap: wrap;
-        gap: 10px;
-    }
+.main_details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start ;
+    gap: 10px;
 }
 
-@media only screen and (max-width: 400px) {
-    .playlist_tracks {
-        gap: 30px;
-    }
+.main_details_button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+}
+
+.main_details_button button {
+    font-size: 25px;
+    border: none;
+    background-color: transparent;
 }

@@ -4,11 +4,11 @@ export type trackType = {
     artist: string,
     album: string,
     image: string,
-    comments: [{
+    comments: {
         text: string, 
         author: string, 
         date: string
-    }],
+    }[] | [],
     uri: string
 }
 

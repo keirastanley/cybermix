@@ -1,6 +1,14 @@
 .song_container {
     display: flex;
     align-items: center;
+    width: 100%;
+}
+
+.song_container button {
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
 }
 
 .song_info {
@@ -20,4 +28,23 @@
 
   .song_info p i {
     font-size: 12px;
+  }
+
+  .comment_container {
+    border: 1px dashed black;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 100px;
+    overflow-y: auto;
+    padding: 20px;
+    width: 400px;
+  }
+
+  .comment_container ul {
+    list-style: none;
+  }
+
+  .comment_text {
+    font-size: 20px;
   }

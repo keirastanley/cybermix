@@ -8,7 +8,6 @@ import styles from "@/styles/playlists.module.css"
 import { spotifyUserType } from "@/data/types"
 import Loader from "@/components/loader"
 import {BsTrash} from "react-icons/bs"
-import {CiEdit} from "react-icons/ci"
 
 type propsObj = {
     user: spotifyUserType
@@ -56,9 +55,8 @@ export default function MyMixes({user} : propsObj) {
           {playlists.length > 0 ? playlists.map(el => 
             <div className={styles.playlist} key={uuidv4()}>
                 <div className={styles.playlist_name_button}>
-                  <h4>{el.name}</h4>
+                <Link href={`/my-mixes/${el._id}`}><h4>{el.name}</h4></Link>
                   <div className={styles.buttons}>
-                    <Link href={`/my-mixes/${el._id}`}><button><CiEdit/></button></Link>
                     <button onClick={() => deletePlaylist(el)}><BsTrash/></button>
                   </div> 
                 </div>

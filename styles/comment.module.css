@@ -1,0 +1,57 @@
+/* <div>
+<button>  */
+.modal {
+    display: flex;
+    flex-direction: column;
+    background: url(/cassette-case.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 270px;
+    height: 170px;
+    gap: 10px;
+    align-items: center;
+}
+
+.header {
+    margin-top: 9px;
+    background-color: #e6e4d8;
+    font-size: 18px;
+    align-self: flex-end;
+    align-self: center;
+}
+
+.content textarea {
+    width: 200px;
+    margin-top: 10px;
+    height: 75px;
+    background-color: rgba(255,255,255,0.5);
+    border: none;
+    font-size: 12px;
+}
+
+.modal>.close {
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    padding: 2px 5px;
+    line-height: 20px;
+    right: -10px;
+    top: -10px;
+    font-size: 24px;
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid #cfcece;
+}
+
+.button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.save_button {
+    background-color: #d5cebc;
+    border: none;
+    font-size: 23px;
+}

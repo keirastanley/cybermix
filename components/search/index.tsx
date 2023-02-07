@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import Song from "../song";
 import { trackType } from "@/data/types";
 import styles from "@/styles/search.module.css"
+import {BsSearch} from "react-icons/bs"
 
 type propsObj = {
     handleAction: Function;
@@ -27,11 +28,7 @@ export default function Search({handleAction} : propsObj){
                 artist: i.artists[0].name,
                 album: i.album.name,
                 image: i.album.images[0].url,
-                comments: [{
-                    text: "", 
-                    author: "", 
-                    date: ""
-                }], 
+                comments: [], 
                 uri: i.uri
             }
             resultsArr.push(trackObj)
@@ -47,7 +44,7 @@ export default function Search({handleAction} : propsObj){
                 placeholder="Search for songs">
             </input>
             <button 
-                onClick={searchTracks}>Search
+                onClick={searchTracks}><BsSearch/>
             </button>
         </div>
         <div className={styles.search_results}>
