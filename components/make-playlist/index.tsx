@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { postPlaylist } from "@/functions/requests";
 import { getCurrentUser, makeSpotifyPlaylist } from "@/functions/spotify";
 import { playlistType, spotifyUserType } from "@/data/types";
+import Loader from "../loader";
 
 type propsType = {
     playlistSettings: {[key: string]: string} | undefined;
@@ -12,6 +13,7 @@ type propsType = {
 export default function MakePlaylist({playlistSettings, getPlaylistSettings} : propsType){
     const router = useRouter()
     const [user, setUser] = useState<spotifyUserType>()
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         async function getUserData(){
@@ -21,6 +23,7 @@ export default function MakePlaylist({playlistSettings, getPlaylistSettings} : p
     }, [])
     
     async function makeNewPlaylist(){
+        setLoading(true)
         const d = new Date
         const date = d.toString()
         if (user) {
@@ -43,11 +46,16 @@ export default function MakePlaylist({playlistSettings, getPlaylistSettings} : p
                 }
                 const addedPlaylist = await postPlaylist(newPlaylist)
                 router.push(`/my-mixes/${addedPlaylist._id}`)
+                if (addedPlaylist) {
+                    setLoading(false)
+                }
             }
-            }
+        }
     }
 
-    return <div>
+    return <>
+    {loading ? <Loader text="Making your mix..."/> : 
+    <div>
     <h1>Make a playlist</h1>
     <p>Name</p>
     <input onBlur={getPlaylistSettings} name="name"></input>
@@ -59,5 +67,6 @@ export default function MakePlaylist({playlistSettings, getPlaylistSettings} : p
         <option>Private</option>
     </select> */}
     <button onClick={makeNewPlaylist}>Make playlist</button>
-</div>
+    </div>}
+    </>
 }

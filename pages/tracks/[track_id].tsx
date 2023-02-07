@@ -63,5 +63,5 @@ export default function SongPage() {
                 </ul> : null) : null}
         </div>
     
-    </div> : <Loader/>
+    </div> : <Loader text="Just a moment..."/>
 }
