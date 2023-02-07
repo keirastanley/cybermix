@@ -56,7 +56,7 @@ export default function SongPage() {
         {track.comments ? 
         track.comments.map((comment: { text: string; author: string; date: string }) => 
             comment.text ? 
-                <ul className={styles.comment}>
+                <ul className={styles.comment} key={uuidv4()}>
                     <li className={styles.comment_text}>{comment.text}</li>
                     <li className={styles.comment_info}>{comment.author}</li>
                     <li className={styles.comment_info}>{comment.date}</li>
