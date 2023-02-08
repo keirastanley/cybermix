@@ -7,27 +7,18 @@ import { Tooltip } from 'react-tooltip'
 import Loader from "../loader";
 import Access from "../access";
 import styles from "@/styles/new_mix.module.css"
-import 'react-tooltip/dist/react-tooltip.css'
 import Image from "next/image"
 
 type propsType = {
+    user: spotifyUserType;
     playlistSettings: {[key: string]: string} | undefined;
     getPlaylistSettings: FocusEventHandler<HTMLInputElement | HTMLSelectElement>;
 }
 
-export default function MakePlaylist({playlistSettings, getPlaylistSettings} : propsType){
+export default function MakePlaylist({user, playlistSettings, getPlaylistSettings} : propsType){
     const router = useRouter()
-    const [user, setUser] = useState<spotifyUserType>()
     const [access, setAccess] = useState<string[]>([])
     const [loading, setLoading] = useState(false)
-
-    useEffect(() => {
-        async function getUserData(){
-            const userData = await getCurrentUser()
-            setUser(userData)
-            setAccess([userData.id])
-        } getUserData()
-    }, [])
     
     async function makeNewPlaylist(){
         setLoading(true)
@@ -52,7 +43,6 @@ export default function MakePlaylist({playlistSettings, getPlaylistSettings} : p
                     access: access
                 }
                 const addedPlaylist = await postPlaylist(newPlaylist)
-                console.log(addedPlaylist)
                 router.push(`/my-mixes/${addedPlaylist._id}`)
                 if (addedPlaylist) {
                     setLoading(false)
@@ -74,14 +64,7 @@ export default function MakePlaylist({playlistSettings, getPlaylistSettings} : p
         <option>Public</option>
         <option>Private</option>
     </select> */}
-        <Tooltip anchorId="tooltip" style={{"opacity": "1"}}>
-            <div>
-                <h2 style={{"fontFamily": "Indie Flower"}}>How to find a Spotify user&#39;s id:</h2>
-                <Image src="/spotify_id_help.png" alt="How to find a Spotify user's id" width={400} height={320}/>
-            </div>
-        </Tooltip>
-        <p>Share <i style={{"color": "gray"}} id="tooltip">Need help?</i></p>
-        <Access access={access} setAccess={setAccess}/>
+        <Access currentUser={user} access={access} setAccess={setAccess}/>
     <button onClick={makeNewPlaylist}>Done</button>
     </div>}
     </>

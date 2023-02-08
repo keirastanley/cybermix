@@ -23,7 +23,6 @@ export default function SongPage() {
             setPlaylists(playlistResults)
             const trackResults : any = playlistResults[0].tracks.filter(track => track.id === router.query.track_id)[0]
             const spotifyTrack : any = await getSpotifyTrack(router.query.track_id as string)
-            console.log(spotifyTrack)
             const release = spotifyTrack.album.release_date.split("-")
             let extraProps : any = {
                 link: spotifyTrack.external_urls.spotify,

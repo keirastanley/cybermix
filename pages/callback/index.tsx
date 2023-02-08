@@ -6,8 +6,6 @@ export default function Callback() {
 
     const [token, setToken] = useState<string>()
     const router = useRouter()
-
-    console.log("hi")
   
     useEffect(() => {
         /**

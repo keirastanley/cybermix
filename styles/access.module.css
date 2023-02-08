@@ -1,11 +1,30 @@
 .access_container input {
     width: 250px;
+    border: none;
+}
+
+.access_container  {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.search_input_section{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: white;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    padding: 3px;
 }
 
 .access_user_container {
     display: flex;
+    align-items: center;
     border: 1px dashed black;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
+    background-color: rgb(255,255,255, 0.5);
 }
 
 .access_names_button {
@@ -29,4 +48,5 @@
     align-items: center;
     gap: 5px;
     width: max-content;
+    background-color: white;
 }

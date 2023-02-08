@@ -1,7 +1,12 @@
 import MakePlaylist from "@/components/make-playlist";
+import { spotifyUserType } from "@/data/types";
 import { useState } from "react";
 
-export default function NewMix(){
+type propsObj = {
+    user: spotifyUserType
+}
+
+export default function NewMix({user} : propsObj){
 
     const [playlistSettings, setPlaylistSettings] = useState<{[key: string]: string}>()
 
@@ -11,5 +16,5 @@ export default function NewMix(){
         setPlaylistSettings(newPlaylistSettings)
     }
 
-    return <MakePlaylist playlistSettings={playlistSettings} getPlaylistSettings={getPlaylistSettings}/>
+    return <MakePlaylist user={user} playlistSettings={playlistSettings} getPlaylistSettings={getPlaylistSettings}/>
 }

@@ -2,7 +2,7 @@ import React, { LegacyRef, MouseEventHandler, useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import Image from "next/image"
 import Song from "@/components/song"
-import { deleteTrackFromPlaylist, getPlaylistById, addTrackToPlaylist, updatePlaylist, addComment } from "@/functions/requests"
+import { deleteTrackFromPlaylist, getPlaylistById, addTrackToPlaylist, updatePlaylist, addComment, removeAccessUser, addAccessUser } from "@/functions/requests"
 import { addTrackSpotifyPlaylist, deleteTrackSpotify, updateSpotifyPlaylistDetails } from "@/functions/spotify";
 import { playlistDataType, trackType } from "@/data/types";
 import styles from "@/styles/playlist.module.css"
@@ -76,14 +76,37 @@ export default function Playlist({user} : any) {
     }
 
     async function addCommentToTrack(track : any, comment : any) {
-        console.log(comment)
         const updatedPlaylist = await addComment(playlist as playlistDataType, track.id, comment);
-        console.log(updatedPlaylist)
         setPlaylist(updatedPlaylist)
     }
 
-    return playlist ? view === "view" ? <ViewPlaylist playlist={playlist} setView={setView}/> :
-        <EditPlaylist user={user} playlist={playlist} handleAction={handleAction} updatePlaylistDetails={updatePlaylistDetails} saveUpdates={saveUpdates} addCommentToTrack={addCommentToTrack} setView={setView}/>
+    async function removeAccess(id : string) {
+        const result = await removeAccessUser(playlist as playlistDataType, id)
+        console.log(result)
+        setPlaylist(result)
+    }
+
+    async function grantAccess(id : string){
+        console.log("hello")
+        if (window.confirm("Done?")) {
+          const result = await addAccessUser(playlist as playlistDataType, id)
+          setPlaylist(result)
+        //   setIsOpen(true)
+        }
+      }
+
+    return playlist ? view === "view" ? 
+        <ViewPlaylist playlist={playlist} setView={setView}/> :
+        <EditPlaylist 
+            user={user} 
+            playlist={playlist} 
+            handleAction={handleAction} 
+            updatePlaylistDetails={updatePlaylistDetails} 
+            saveUpdates={saveUpdates} 
+            addCommentToTrack={addCommentToTrack} 
+            setView={setView} 
+            removeAccess={removeAccess} 
+            grantAccess={grantAccess}/>
         :
         <Loader text="Just a moment..."/>
 }
