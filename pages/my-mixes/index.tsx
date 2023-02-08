@@ -49,7 +49,6 @@ export default function MyMixes({user} : propsObj) {
             setDeleting({id: playlist._id, done: true})
             getPlaylists()
         }
-        // console.log(deletePlaylist(id))
     }
 
     return user ? <>
@@ -59,7 +58,7 @@ export default function MyMixes({user} : propsObj) {
                 <Link href={`/my-mixes/${el._id}`} key={uuidv4()}>
                 <div className={styles.playlist}>
                 <div className={styles.playlist_name_button}>
-                    <h4>{el.name}</h4>
+                    <h3>{el.name}</h3>
                   <div className={styles.buttons}>
                     <button onClick={() => deletePlaylist(el)}><BsTrash/></button>
                   </div> 

@@ -41,7 +41,8 @@ export async function postPlaylist(playlist : playlistType) {
  * @param update The property and value of the item to be updated
  */
 export async function updatePlaylist(playlist : playlistDataType, update : {[key: string]: string}) {
-    const response = await fetch(`https://cybermix-backend.onrender.com/api/playlists/${playlist._id}?action=update`,
+    // const response = await fetch(`https://cybermix-backend.onrender.com/api/playlists/${playlist._id}?action=update`,
+    const response = await fetch(`https://cybermix-backend.onrender.com/api/playlists/${playlist._id}?action=update-playlist`,
     {
         method: 'PATCH',
         headers: {
@@ -67,7 +68,7 @@ export async function addTrackToPlaylist(playlist : playlistDataType, track : tr
 }
 
 export async function deleteTrackFromPlaylist(playlist : playlistDataType, track : trackType){
-    const response = await fetch(`https://cybermix-backend.onrender.com/api/playlists/${playlist._id}?action=delete`,
+    const response = await fetch(`https://cybermix-backend.onrender.com/api/playlists/${playlist._id}?action=delete-track`,
     {
         method: 'PATCH',
         headers: {
@@ -88,17 +89,43 @@ export async function deletePlaylistById(id : string){
         },
     })
     const data = await response.json()
-    console.log(data)
 }
 
 export async function addComment(playlist : playlistDataType, track_id : string, comment : {text: string, author: string, date: string}){
-    const response = await fetch(`https://cybermix-backend.onrender.com/api/playlists/${playlist._id}?action=comment`,
+    const response = await fetch(`https://cybermix-backend.onrender.com/api/playlists/${playlist._id}?action=add-comment`,
     {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify([{track_id: track_id}, comment])
+    })
+    const data = await response.json()
+    return data.payload[0];
+}
+
+export async function addAccessUser(playlist : playlistDataType, user_id : string){
+    const response = await fetch(`https://cybermix-backend.onrender.com/api/playlists/${playlist._id}?action=add-access`,
+    {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({user_id: user_id})
+    })
+    const data = await response.json()
+    return data.payload[0];
+}
+
+export async function removeAccessUser(playlist : playlistDataType, user_id : string){
+    console.log("hi")
+    const response = await fetch(`https://cybermix-backend.onrender.com/api/playlists/${playlist._id}?action=remove-access`,
+    {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({user_id: user_id})
     })
     const data = await response.json()
     return data.payload[0];

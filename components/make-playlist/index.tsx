@@ -3,24 +3,22 @@ import { useRouter } from "next/router";
 import { postPlaylist } from "@/functions/requests";
 import { getCurrentUser, makeSpotifyPlaylist } from "@/functions/spotify";
 import { playlistType, spotifyUserType } from "@/data/types";
+import { Tooltip } from 'react-tooltip'
 import Loader from "../loader";
+import Access from "../access";
+import styles from "@/styles/new_mix.module.css"
+import Image from "next/image"
 
 type propsType = {
+    user: spotifyUserType;
     playlistSettings: {[key: string]: string} | undefined;
     getPlaylistSettings: FocusEventHandler<HTMLInputElement | HTMLSelectElement>;
 }
 
-export default function MakePlaylist({playlistSettings, getPlaylistSettings} : propsType){
+export default function MakePlaylist({user, playlistSettings, getPlaylistSettings} : propsType){
     const router = useRouter()
-    const [user, setUser] = useState<spotifyUserType>()
+    const [access, setAccess] = useState<string[]>([])
     const [loading, setLoading] = useState(false)
-
-    useEffect(() => {
-        async function getUserData(){
-            const userData = await getCurrentUser()
-            setUser(userData)
-        } getUserData()
-    }, [])
     
     async function makeNewPlaylist(){
         setLoading(true)
@@ -42,7 +40,7 @@ export default function MakePlaylist({playlistSettings, getPlaylistSettings} : p
                     created_by: addedSpotifyPlaylist.owner.id,
                     tracks: [],
                     date: date,
-                    access: [addedSpotifyPlaylist.owner.id]
+                    access: access
                 }
                 const addedPlaylist = await postPlaylist(newPlaylist)
                 router.push(`/my-mixes/${addedPlaylist._id}`)
@@ -55,18 +53,19 @@ export default function MakePlaylist({playlistSettings, getPlaylistSettings} : p
 
     return <>
     {loading ? <Loader text="Making your mix..."/> : 
-    <div>
+    <div className={styles.new_mix_container}>
     <h1>Make a playlist</h1>
     <p>Name</p>
     <input onBlur={getPlaylistSettings} name="name"></input>
     <p>Description</p>
-    <input onBlur={getPlaylistSettings} name="description"></input>
+    <input onBlur={getPlaylistSettings} name="description" placeholder="(Optional)"></input>
     {/* <p>Select a setting</p>
     <select onBlur={getPlaylistSettings} name="setting">
         <option>Public</option>
         <option>Private</option>
     </select> */}
-    <button onClick={makeNewPlaylist}>Make playlist</button>
+        <Access currentUser={user} access={access} setAccess={setAccess}/>
+    <button onClick={makeNewPlaylist}>Done</button>
     </div>}
     </>
 }

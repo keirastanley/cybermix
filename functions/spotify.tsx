@@ -153,3 +153,14 @@ export async function getSpotifyTrack(id : string) {
     const track = await spotify.getTrack(id)
     return track;
 }
+
+export async function getSpotifyUser(user_id : string){
+    spotify.setAccessToken(localStorage.getItem('spotifyToken'));
+    try {
+        const user = await spotify.getUser(user_id)
+        return {success: true, payload: user}
+    }
+    catch {
+        return {success: false, payload: "Please enter a valid Spotify user id."}
+    }
+}

@@ -22,7 +22,6 @@ type propsType = {
 export default function Song({ track, action, handleAction, addCommentToTrack, user }: propsType) {
     const [showComments, setShowComments] = useState(false)
     const router = useRouter()
-    console.log(router)
 
     function Action() {
         if (handleAction) {

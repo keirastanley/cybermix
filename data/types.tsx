@@ -31,9 +31,9 @@ export interface playlistDataType extends playlistType {
 export type playlistArrType = playlistDataType[]
 
 export type spotifyUserType = {
-    country: string,
+    country?: string,
     display_name?: string | undefined,
-    email: string,
+    email?: string,
     explicit_content?: {
         filter_enabled: boolean, 
         filter_locked: boolean
@@ -51,7 +51,7 @@ export type spotifyUserType = {
       url: string;
       width?: number;
     }[] | undefined,
-    product: string,
-    type: string
+    product?: string,
+    type: string,
     uri: string
 }
