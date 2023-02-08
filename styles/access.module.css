@@ -1,0 +1,32 @@
+.access_container input {
+    width: 250px;
+}
+
+.access_user_container {
+    display: flex;
+    border: 1px dashed black;
+    margin-bottom: 20px;
+}
+
+.access_names_button {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px;
+}
+
+.added_access_users_container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.added_access_user {
+    border: 1px solid grey;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: max-content;
+}

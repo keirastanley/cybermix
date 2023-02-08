@@ -7,6 +7,7 @@ import { useEffect, useReducer, useState } from 'react'
 import { spotifyUserType } from '@/data/types'
 import { getTokenFromUrl } from "@/functions/spotify";
 import { useRouter } from "next/router";
+import {BsSpotify} from "react-icons/bs"
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
@@ -44,9 +45,9 @@ export default function App({ Component, pageProps }: AppProps) {
     } getUserData()
   }, [token])
 
-  useEffect(() =>{
-    router.push('/my-mixes')
-  }, [user])
+  // useEffect(() =>{
+  //   router.push('/my-mixes')
+  // }, [user])
 
   return <div className="page_container">
     <Header/>
@@ -54,7 +55,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <p>Logged in as {user.display_name}</p>
       <Component {...pageProps} user={user}/>
     </> : 
-      <a href={loginUrl}>Login to Spotify</a>}
+        <a href={loginUrl} style={{"fontSize": "20px"}} className="login_button"><BsSpotify style={{"fontSize": "30px"}}/>Login to Spotify</a>}
     {/* <Footer/> */}
   </div>
 }

@@ -25,6 +25,12 @@ module.exports = {
         port: '',
         pathname: '/media/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'platform-lookaside.fbsbx.com',
+        port: '',
+        pathname: '/platform/profilepic/**',
+      },
     ],
   },
 }
