@@ -76,7 +76,7 @@ export default function MakePlaylist({playlistSettings, getPlaylistSettings} : p
     </select> */}
         <Tooltip anchorId="tooltip" style={{"opacity": "1"}}>
             <div>
-                <h2 style={{"fontFamily": "Indie Flower"}}>How to find a Spotify user's id:</h2>
+                <h2 style={{"fontFamily": "Indie Flower"}}>How to find a Spotify user&#39;s id:</h2>
                 <Image src="/spotify_id_help.png" alt="How to find a Spotify user's id" width={400} height={320}/>
             </div>
         </Tooltip>
