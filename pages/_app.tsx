@@ -42,12 +42,23 @@ export default function App({ Component, pageProps }: AppProps) {
     } getUserData()
   }, [token])
 
+  function logUserOut(){
+    if (window.confirm("Would you like to log out?")) {
+      localStorage.removeItem("spotifyToken")
+      setToken(undefined)
+      setUser(undefined)
+    }
+  }
+
   return <div className="page_container">
     <Header/>
     {user ? <>
-      <p>Logged in as {user.display_name}</p>
+      <p>Logged in as {user.display_name} <span onClick={logUserOut} style={{"cursor" : "pointer", "color": "grey"}}>(Log out)</span></p>
       <Component {...pageProps} user={user}/>
     </> : 
-        <a href={loginUrl} style={{"fontSize": "20px"}} className="login_button"><BsSpotify style={{"fontSize": "30px"}}/>Login to Spotify</a>}
+        <a href={loginUrl} style={{"fontSize": "20px"}} className="login_button">
+            <BsSpotify style={{"fontSize": "30px"}}/>
+              Login to Spotify
+        </a>}
   </div>
 }
