@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Popup from "reactjs-popup"
-import styles from "@/styles/modal.module.css"
+import styles from "@/styles/popup-styles/edit_playlist_popup.module.css"
 import {VscSaveAs} from "react-icons/vsc"
 import {CiEdit} from "react-icons/ci"
 

@@ -19,6 +19,7 @@ export default function MyMixes({user} : propsObj) {
 
     async function getPlaylists() {
         const playlistArray = await getAllPlaylists();
+        console.log(playlistArray)
         let userPlaylists = []
         for (let i = 0; i < playlistArray.length; i++) {
             if (playlistArray[i].access.includes(user.id)) {

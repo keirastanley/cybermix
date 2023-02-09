@@ -1,11 +1,10 @@
-import { MouseEventHandler, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Popup from "reactjs-popup"
-import styles from "@/styles/access_popup.module.css"
+import styles from "@/styles/popup-styles/access_popup.module.css"
 import {AiOutlineCheckCircle} from "react-icons/ai"
 import {IoIosAddCircleOutline} from "react-icons/io"
-import Access from "../access";
+import Access from "../../access";
 import { spotifyUserType } from "@/data/types";
-import { addAccessUser } from "@/functions/requests";
 import LoadingIcons from "react-loading-icons";
 
 type propsObj = {
@@ -39,15 +38,10 @@ export default function AccessPopup({initialAccess, user, grantAccess} : propsOb
           setIsOpen(false)
         }
     }
-
-    // function getComment(event : any){
-    //     const commentObj = {text: event.target.value, author: user.id, date: new Date().toString()}
-    //     setComment(commentObj)
-    // }
     
     return <div>
         <button className={styles.button} onClick={() => setIsOpen(!isOpen)}> <IoIosAddCircleOutline/></button>
-    {loading ? <LoadingIcons.TailSpin color="black"/> : 
+        {loading ? <LoadingIcons.TailSpin color="black"/> : 
           <Popup
             closeOnDocumentClick={false}
             nested

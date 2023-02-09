@@ -1,37 +1,34 @@
-import React, { LegacyRef, MouseEventHandler, useEffect, useState } from "react"
-import { useRouter } from "next/router"
-import Image from "next/image"
-import Song from "@/components/song"
+import Search from "@/components/search"
+import styles from "@/styles/edit_playlist.module.css"
+import { playlistDataType, spotifyUserType, trackType } from "@/data/types";
 import { deleteTrackFromPlaylist, getPlaylistById, addTrackToPlaylist, updatePlaylist, addComment, removeAccessUser, addAccessUser } from "@/functions/requests"
 import { addTrackSpotifyPlaylist, deleteTrackSpotify, updateSpotifyPlaylistDetails } from "@/functions/spotify";
-import { playlistDataType, trackType } from "@/data/types";
-import styles from "@/styles/playlist.module.css"
-import EditPlaylistPopup from "@/components/edit-playlist-popup"
-
+import { useEffect, useState } from "react"
+import { useRouter } from "next/router"
 import Loader from "@/components/loader"
-import EditPlaylist from "@/components/edit-playlist"
-import ViewPlaylist from "@/components/view-playlist"
+import EditPlaylist from "@/components/edit-playlist";
 
-export default function Playlist({user} : any) {
+type propsObj = {
+    user: spotifyUserType,
+}
 
+export default function EditPage({user} : propsObj){
     const [playlist, setPlaylist] = useState<playlistDataType>()
     const [details, setDetails] = useState<{[key: string]: string | boolean}>({name: "", description: ""})
-    const [view, setView] = useState("view")
     const router = useRouter()
+    console.log("hi", router.query)
 
     useEffect(() => {
         async function getPlaylist() {
             let playlist_id;
             if (router.query._id) {
                 playlist_id = router.query._id as string
+                const playlistObject = await getPlaylistById(playlist_id)
+                setPlaylist(playlistObject)
             }
-            else {
-                playlist_id = window.location.pathname.split("/").pop() as string
-            }
-            const playlistObject = await getPlaylistById(playlist_id)
-            setPlaylist(playlistObject)
         } getPlaylist()
-    }, [])
+    }, [router.query._id])
+
 
     async function handleAction(track: trackType, action: string) {
         if (playlist) {
@@ -82,31 +79,27 @@ export default function Playlist({user} : any) {
 
     async function removeAccess(id : string) {
         const result = await removeAccessUser(playlist as playlistDataType, id)
-        console.log(result)
         setPlaylist(result)
     }
 
     async function grantAccess(id : string){
-        console.log("hello")
         if (window.confirm("Done?")) {
           const result = await addAccessUser(playlist as playlistDataType, id)
           setPlaylist(result)
-        //   setIsOpen(true)
         }
-      }
+    }
 
-    return playlist ? view === "view" ? 
-        <ViewPlaylist playlist={playlist} setView={setView}/> :
-        <EditPlaylist 
-            user={user} 
-            playlist={playlist} 
-            handleAction={handleAction} 
-            updatePlaylistDetails={updatePlaylistDetails} 
-            saveUpdates={saveUpdates} 
-            addCommentToTrack={addCommentToTrack} 
-            setView={setView} 
-            removeAccess={removeAccess} 
-            grantAccess={grantAccess}/>
-        :
-        <Loader text="Just a moment..."/>
+    return playlist ? <div className={styles.edit_playlist_container}>
+    <EditPlaylist 
+        user={user} 
+        updatePlaylistDetails={updatePlaylistDetails} 
+        playlist={playlist} 
+        saveUpdates={saveUpdates} 
+        removeAccess={removeAccess} 
+        grantAccess={grantAccess} 
+        handleAction={handleAction} 
+        addCommentToTrack={addCommentToTrack}
+    />
+    <Search handleAction={handleAction} />
+</div> : <Loader text="Just a moment..."/>
 }

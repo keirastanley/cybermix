@@ -1,7 +1,7 @@
 import Image from "next/image"
 import styles from "@/styles/song.module.css"
 import { spotifyUserType, trackType } from "@/data/types"
-import CommentPopup from "../comment-popup";
+import CommentPopup from "../popups/comment-popup";
 import { MdPlaylistAdd } from "react-icons/md"
 import { BsTrash } from "react-icons/bs"
 import { v4 as uuidv4 } from "uuid"

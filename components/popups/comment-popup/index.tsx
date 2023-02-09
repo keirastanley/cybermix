@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Popup from "reactjs-popup"
-import styles from "@/styles/comment_popup.module.css"
-import {VscSaveAs} from "react-icons/vsc"
-import {CiEdit} from "react-icons/ci"
+import styles from "@/styles/popup-styles/comment_popup.module.css"
 import {BiCommentAdd} from "react-icons/bi"
 import {FaRegCommentDots} from "react-icons/fa"
 

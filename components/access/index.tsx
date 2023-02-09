@@ -1,13 +1,11 @@
 import { spotifyUserType } from "@/data/types";
-import { getSpotifyUser, spotify } from "@/functions/spotify";
+import { getSpotifyUser } from "@/functions/spotify";
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import styles from "@/styles/access.module.css"
 import { TiDeleteOutline } from "react-icons/ti"
-import Image from "next/image";
-import { BsSearch } from "react-icons/bs"
-import { Tooltip } from 'react-tooltip'
-import 'react-tooltip/dist/react-tooltip.css'
+import SearchBar from "../search-bar";
+import IdTooltip from "../id-tooltip";
 
 type propsObj = {
     currentUser: spotifyUserType;
@@ -51,6 +49,7 @@ export default function Access({ currentUser, access, setAccess }: propsObj) {
         }
     }
 
+    /** Displays the display name, id and (if applicable) photo of the user found in the search */
     function DisplayUser() {
         return spotifyUser ? <div className={styles.access_user_container}>
             <div className={styles.access_names_button}>
@@ -63,6 +62,7 @@ export default function Access({ currentUser, access, setAccess }: propsObj) {
         </div> : null
     }
 
+    /** Displays the ids of the users who have been granted access to the playlist */
     function DisplayAddedUser() {
         return <div className={styles.added_access_users_container}>{access.slice(1).map(user =>
             <div className={styles.added_access_user} key={uuidv4()}>
@@ -85,21 +85,13 @@ export default function Access({ currentUser, access, setAccess }: propsObj) {
     }
 
     return <div className={styles.access_container}>
-        <Tooltip anchorId="tooltip" style={{ "opacity": "1" }} place="top" >
-            <h2 style={{ "fontFamily": "Indie Flower" }}>How to find a Spotify user&#39;s id:</h2>
-            <Image src="/spotify_id_help.png" alt="How to find a Spotify user's id" width={400} height={320} />
-        </Tooltip>
-        <p>Share <i style={{ "color": "gray" }} id="tooltip">Need help?</i></p>
+        <IdTooltip/>
         {access.length > 1 ? <DisplayAddedUser /> : null}
         {spotifyUser ? <DisplayUser /> : null}
-        <div className={styles.search_input_section}>
-            <input
-                onChange={getAccessInput}
-                onKeyDown={handleSearch}
-                placeholder="(Optional) Enter a spotify user's id"
-            >
-            </input>
-            <BsSearch />
-        </div>
+        <SearchBar
+            changeFunction={getAccessInput} 
+            keyFunction={handleSearch} 
+            placeholder="(Optional) Enter a spotify user's id"
+        />
     </div>
 }

@@ -1,58 +1,22 @@
-import { FocusEventHandler, useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import { postPlaylist } from "@/functions/requests";
-import { getCurrentUser, makeSpotifyPlaylist } from "@/functions/spotify";
-import { playlistType, spotifyUserType } from "@/data/types";
-import { Tooltip } from 'react-tooltip'
+import { FocusEventHandler, MouseEventHandler, useState } from "react";
 import Loader from "../loader";
 import Access from "../access";
 import styles from "@/styles/new_mix.module.css"
-import Image from "next/image"
+import { spotifyUserType } from "@/data/types";
 
 type propsType = {
     user: spotifyUserType;
-    playlistSettings: {[key: string]: string} | undefined;
+    loading: boolean;
+    access: string[];
+    setAccess: Function;
     getPlaylistSettings: FocusEventHandler<HTMLInputElement | HTMLSelectElement>;
+    makeNewPlaylist: MouseEventHandler<HTMLButtonElement>;
 }
 
-export default function MakePlaylist({user, playlistSettings, getPlaylistSettings} : propsType){
-    const router = useRouter()
-    const [access, setAccess] = useState<string[]>([])
-    const [loading, setLoading] = useState(false)
-    
-    async function makeNewPlaylist(){
-        setLoading(true)
-        const d = new Date
-        const date = d.toString()
-        if (user) {
-            const addedSpotifyPlaylist = await makeSpotifyPlaylist(user.id, {
-                name: playlistSettings?.name || "A Cyber-Mix Playlist",
-                description: playlistSettings?.description || "Playlist made with Cyber-Mix.", 
-                settings: true
-            })
-            if (addedSpotifyPlaylist) {
-                const newPlaylist : playlistType = {
-                    spotify_id: addedSpotifyPlaylist.id,
-                    name: playlistSettings?.name || "A Cyber-Mix Playlist",
-                    description: playlistSettings?.description || "Playlist made with Cyber-Mix.",
-                    image: "/cyber-mix-logo.png",
-                    link: addedSpotifyPlaylist.external_urls.spotify,
-                    created_by: addedSpotifyPlaylist.owner.id,
-                    tracks: [],
-                    date: date,
-                    access: access
-                }
-                const addedPlaylist = await postPlaylist(newPlaylist)
-                router.push(`/my-mixes/${addedPlaylist._id}`)
-                if (addedPlaylist) {
-                    setLoading(false)
-                }
-            }
-        }
-    }
+/** A component that contains the input fileds to select the playlist's name and description, renders the Access component that handles which Spotify users can view the playlist and a button that makes the POST requests to Spotify and the database. */
+export default function MakePlaylist({user, loading, access, setAccess, getPlaylistSettings, makeNewPlaylist} : propsType){
 
-    return <>
-    {loading ? <Loader text="Making your mix..."/> : 
+    return loading ? <Loader text="Making your mix..."/> : 
     <div className={styles.new_mix_container}>
     <h1>Make a playlist</h1>
     <p>Name</p>
@@ -66,6 +30,5 @@ export default function MakePlaylist({user, playlistSettings, getPlaylistSetting
     </select> */}
         <Access currentUser={user} access={access} setAccess={setAccess}/>
     <button onClick={makeNewPlaylist}>Done</button>
-    </div>}
-    </>
+    </div>
 }
