@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Popup from "reactjs-popup"
-import styles from "@/styles/comment_popup.module.css"
-import {VscSaveAs} from "react-icons/vsc"
-import {CiEdit} from "react-icons/ci"
+import styles from "@/styles/popup-styles/comment_popup.module.css"
 import {BiCommentAdd} from "react-icons/bi"
 import {FaRegCommentDots} from "react-icons/fa"
 
+/** A popup window to allow users to add a new comment to a song on their playlist */
 export default function CommentPopup({user, track, addCommentToTrack} : any){
     const [isOpen, setIsOpen] = useState(false)
     const [comment, setComment] = useState({text: "", author: "", date: ""})
@@ -23,8 +22,7 @@ export default function CommentPopup({user, track, addCommentToTrack} : any){
 
     async function saveComment(){
       if (window.confirm("Ready to post your comment?")) {
-        const result = await addCommentToTrack(track, comment)
-        console.log(result)
+        await addCommentToTrack(track, comment)
         setIsOpen(true)
       }
     }

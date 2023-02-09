@@ -1,16 +1,13 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import Header from '@/components/header'
-import Footer from '@/components/footer'
 import {getCurrentUser, loginUrl} from '@/functions/spotify'
 import { useEffect, useReducer, useState } from 'react'
 import { spotifyUserType } from '@/data/types'
 import { getTokenFromUrl } from "@/functions/spotify";
-import { useRouter } from "next/router";
 import {BsSpotify} from "react-icons/bs"
 
 export default function App({ Component, pageProps }: AppProps) {
-  const router = useRouter()
   const [token, setToken] = useState<string>()
   const [user, setUser] = useState<spotifyUserType>()
 
@@ -45,10 +42,6 @@ export default function App({ Component, pageProps }: AppProps) {
     } getUserData()
   }, [token])
 
-  // useEffect(() =>{
-  //   router.push('/my-mixes')
-  // }, [user])
-
   return <div className="page_container">
     <Header/>
     {user ? <>
@@ -56,6 +49,5 @@ export default function App({ Component, pageProps }: AppProps) {
       <Component {...pageProps} user={user}/>
     </> : 
         <a href={loginUrl} style={{"fontSize": "20px"}} className="login_button"><BsSpotify style={{"fontSize": "30px"}}/>Login to Spotify</a>}
-    {/* <Footer/> */}
   </div>
 }

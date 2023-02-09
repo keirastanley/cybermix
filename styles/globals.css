@@ -53,7 +53,8 @@ input {
   align-items: center;
   gap: 10px;
   color: black;
-  font-family: sans-serif;
+  font-family: 'Indie Flower';
+  cursor: pointer;
 }
 
 .login_button:hover {

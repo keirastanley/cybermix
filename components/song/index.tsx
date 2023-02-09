@@ -1,7 +1,7 @@
 import Image from "next/image"
 import styles from "@/styles/song.module.css"
 import { spotifyUserType, trackType } from "@/data/types"
-import CommentPopup from "../comment-popup";
+import CommentPopup from "../popups/comment-popup";
 import { MdPlaylistAdd } from "react-icons/md"
 import { BsTrash } from "react-icons/bs"
 import { v4 as uuidv4 } from "uuid"
@@ -19,6 +19,7 @@ type propsType = {
     user?: spotifyUserType;
 }
 
+/** A component that displays a song and its necessary buttons / icons for adding, deleting, adding comments or navigating to full song view */
 export default function Song({ track, action, handleAction, addCommentToTrack, user }: propsType) {
     const [showComments, setShowComments] = useState(false)
     const router = useRouter()

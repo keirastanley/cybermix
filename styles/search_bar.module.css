@@ -1,0 +1,13 @@
+.search_input_section{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: white;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    padding: 3px;
+}
+
+.search_input_section input{
+    border: none;
+}

@@ -5,11 +5,13 @@ import Song from "../song";
 import { trackType } from "@/data/types";
 import styles from "@/styles/search.module.css"
 import {BsSearch} from "react-icons/bs"
+import SearchBar from "../search-bar";
 
 type propsObj = {
     handleAction: Function;
 }
 
+/** The section where users can search for songs and add them to their playlist when editing */
 export default function Search({handleAction} : propsObj){
     const [query, setQuery] = useState("")
     const [results, setResults] = useState<trackType[]>([])
@@ -18,7 +20,7 @@ export default function Search({handleAction} : propsObj){
 		setQuery(event.target.value)
 	}
 
-    function test(event : any){
+    function handleSearch(event : any){
         if (event.key === "Enter") {
             searchTracks()
         }
@@ -44,17 +46,11 @@ export default function Search({handleAction} : propsObj){
 
     return <div className={styles.search_container}>
         <h2>Add some songs</h2>
-        <div className={styles.search_input_section}>
-            <input 
-                className={styles.search_input}
-                onChange={handleQuery} 
-                onKeyDown={test}
-                placeholder="Search for songs">
-            </input>
-            <button 
-                onClick={searchTracks}><BsSearch/>
-            </button>
-        </div>
+        <SearchBar 
+            changeFunction={handleQuery} 
+            keyFunction={handleSearch} 
+            placeholder="Search for songs"
+        />
         <div className={styles.search_results}>
             {results.length > 0 ? results.map(track => 
                 <Song track={track} action="Add song" handleAction={handleAction} key={uuidv4()}/>) : null}
