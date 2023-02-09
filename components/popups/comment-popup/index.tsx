@@ -22,8 +22,7 @@ export default function CommentPopup({user, track, addCommentToTrack} : any){
 
     async function saveComment(){
       if (window.confirm("Ready to post your comment?")) {
-        const result = await addCommentToTrack(track, comment)
-        console.log(result)
+        await addCommentToTrack(track, comment)
         setIsOpen(true)
       }
     }

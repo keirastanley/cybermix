@@ -9,7 +9,6 @@ import { spotifyUserType } from "@/data/types"
 import Loader from "@/components/loader"
 import {BsTrash} from "react-icons/bs"
 import {CiEdit} from "react-icons/ci"
-import Router from "next/router"
 
 type propsObj = {
     user: spotifyUserType
@@ -21,7 +20,6 @@ export default function MyMixes({user} : propsObj) {
 
     async function getPlaylists() {
         const playlistArray = await getAllPlaylists();
-        console.log(playlistArray)
         let userPlaylists = []
         for (let i = 0; i < playlistArray.length; i++) {
             if (playlistArray[i].access.includes(user.id)) {

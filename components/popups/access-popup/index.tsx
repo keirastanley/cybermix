@@ -19,10 +19,6 @@ export default function AccessPopup({initialAccess, user, grantAccess} : propsOb
     const [access, setAccess] = useState<string[]>(initialAccess)
     const [loading, setLoading] = useState(false)
 
-    useEffect(() => {
-        console.log("hi", access)
-    }, [access])
-
     function handleMenu(){
         if (window.confirm("Close without saving?")){
             setIsOpen(false)
