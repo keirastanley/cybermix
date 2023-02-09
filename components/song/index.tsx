@@ -19,6 +19,7 @@ type propsType = {
     user?: spotifyUserType;
 }
 
+/** A component that displays a song and its necessary buttons / icons for adding, deleting, adding comments or navigating to full song view */
 export default function Song({ track, action, handleAction, addCommentToTrack, user }: propsType) {
     const [showComments, setShowComments] = useState(false)
     const router = useRouter()

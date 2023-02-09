@@ -13,7 +13,7 @@ type propsType = {
     makeNewPlaylist: MouseEventHandler<HTMLButtonElement>;
 }
 
-/** A component that contains the input fileds to select the playlist's name and description, renders the Access component that handles which Spotify users can view the playlist and a button that makes the POST requests to Spotify and the database. */
+/** A component that contains the input fields to select the playlist's name and description, renders the Access component that handles which Spotify users can view the playlist and a button that makes the POST requests to Spotify and the database. */
 export default function MakePlaylist({user, loading, access, setAccess, getPlaylistSettings, makeNewPlaylist} : propsType){
 
     return loading ? <Loader text="Making your mix..."/> : 

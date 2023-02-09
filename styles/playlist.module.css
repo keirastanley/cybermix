@@ -5,6 +5,7 @@
     align-items: flex-start;
     width: 40%;
     border: 1px dashed black;
+    margin-bottom: 50px;
 }
 
 .playlist_tracks {
@@ -31,11 +32,19 @@
     padding: 20px;
 }
 
-.main_details_button button {
-    font-size: 25px;
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    width: 100%;
+}
+
+.buttons button {
     border: none;
     background-color: transparent;
     cursor: pointer;
+    font-size: 20px;
 }
 
 .playlist_link {

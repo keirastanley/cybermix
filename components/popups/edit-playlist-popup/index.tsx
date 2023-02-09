@@ -4,6 +4,7 @@ import styles from "@/styles/popup-styles/edit_playlist_popup.module.css"
 import {VscSaveAs} from "react-icons/vsc"
 import {CiEdit} from "react-icons/ci"
 
+/** A popup window to allow users to edit the name and description of a playlist */
 export default function EditPlaylistPopup({playlist, updatePlaylistDetails, saveUpdates} : any){
     const [isOpen, setIsOpen] = useState(false)
 

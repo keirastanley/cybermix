@@ -11,6 +11,7 @@ type propsObj = {
     handleAction: Function;
 }
 
+/** The section where users can search for songs and add them to their playlist when editing */
 export default function Search({handleAction} : propsObj){
     const [query, setQuery] = useState("")
     const [results, setResults] = useState<trackType[]>([])
@@ -50,17 +51,6 @@ export default function Search({handleAction} : propsObj){
             keyFunction={handleSearch} 
             placeholder="Search for songs"
         />
-        {/*<div className={styles.search_input_section}>
-             <input 
-                className={styles.search_input}
-                onChange={handleQuery} 
-                onKeyDown={handleSearch}
-                placeholder="Search for songs">
-            </input>
-            <button 
-                onClick={searchTracks}><BsSearch/>
-            </button> 
-        </div>*/}
         <div className={styles.search_results}>
             {results.length > 0 ? results.map(track => 
                 <Song track={track} action="Add song" handleAction={handleAction} key={uuidv4()}/>) : null}

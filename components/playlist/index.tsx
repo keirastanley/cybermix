@@ -7,12 +7,15 @@ import { v4 as uuidv4 } from "uuid"
 import {BsSpotify} from "react-icons/bs"
 import Link from "next/link"
 import { useRouter } from "next/router";
+import {BsTrash} from "react-icons/bs"
 
 type propsObj = {
     playlist: playlistDataType,
+    deletePlaylist: Function;
 }
 
-export default function Playlist({playlist} : propsObj) {
+/** Full playlist view, displaying all the main details, comments and links to edit view and each track's individual page */
+export default function Playlist({playlist, deletePlaylist} : propsObj) {
     const router = useRouter()
 
     return <div className={styles.playlist_container}>
@@ -24,11 +27,14 @@ export default function Playlist({playlist} : propsObj) {
                 height={200}
             />
             <div className={styles.main_details}>
-                <Link href={`${router.query._id}/edit`}>
-                    <button>
-                        <CiEdit/>
-                    </button>
-                </Link>
+                <div className={styles.buttons}>
+                    <Link href={`${router.query._id}/edit`}>
+                        <button style={{"fontSize": "25px"}}>
+                            <CiEdit/>
+                        </button>
+                    </Link>
+                    <button onClick={() => deletePlaylist(playlist._id)}><BsTrash/></button>
+                </div>
                 <h1>{playlist.name}</h1>
                 <h3>{playlist.description}</h3>
                 <h3>

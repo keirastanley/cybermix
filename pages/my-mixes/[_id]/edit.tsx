@@ -16,7 +16,6 @@ export default function EditPage({user} : propsObj){
     const [playlist, setPlaylist] = useState<playlistDataType>()
     const [details, setDetails] = useState<{[key: string]: string | boolean}>({name: "", description: ""})
     const router = useRouter()
-    console.log("hi", router.query)
 
     useEffect(() => {
         async function getPlaylist() {

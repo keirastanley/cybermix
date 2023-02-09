@@ -4,6 +4,7 @@ import styles from "@/styles/popup-styles/comment_popup.module.css"
 import {BiCommentAdd} from "react-icons/bi"
 import {FaRegCommentDots} from "react-icons/fa"
 
+/** A popup window to allow users to add a new comment to a song on their playlist */
 export default function CommentPopup({user, track, addCommentToTrack} : any){
     const [isOpen, setIsOpen] = useState(false)
     const [comment, setComment] = useState({text: "", author: "", date: ""})

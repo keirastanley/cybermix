@@ -13,6 +13,7 @@ type propsObj = {
     grantAccess: Function;
 }
 
+/** Popup menu to allow users to grant or remove access to their playlist to other Spotify users */
 export default function AccessPopup({initialAccess, user, grantAccess} : propsObj){
     const [isOpen, setIsOpen] = useState(false)
     const [access, setAccess] = useState<string[]>(initialAccess)

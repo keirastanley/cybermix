@@ -64,11 +64,15 @@ export default function Access({ currentUser, access, setAccess }: propsObj) {
 
     /** Displays the ids of the users who have been granted access to the playlist */
     function DisplayAddedUser() {
-        return <div className={styles.added_access_users_container}>{access.slice(1).map(user =>
-            <div className={styles.added_access_user} key={uuidv4()}>
-                <p>{user}</p>
-                <p onClick={() => removeUser(user)}><TiDeleteOutline /></p>
-            </div>)}</div>
+        return <div className={styles.added_access_users_container}>
+                    {access.slice(1).map(user =>
+                        <div className={styles.added_access_user} key={uuidv4()}>
+                            <p>{user}</p>
+                            <p onClick={() => removeUser(user)}>
+                                <TiDeleteOutline />
+                            </p>
+                        </div>)}
+                </div>
     }
 
     function shareWithUser() {

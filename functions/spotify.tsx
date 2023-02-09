@@ -143,17 +143,28 @@ export async function getCurrentUser(){
     return userData
 }
 
+/** Delete a playlist from Spotify (Spotify playlists are functionally deleted by being unfollowed by the creator)
+ * @param id The id of the playlist
+ */
 export async function deleteSpotifyPlaylist(id : string){
     spotify.setAccessToken(localStorage.getItem('spotifyToken'));
     await spotify.unfollowPlaylist(id)
 }
 
+/** Get information about a Spotify track
+ * @param id The id of the track
+ * @return The track
+ */
 export async function getSpotifyTrack(id : string) {
     spotify.setAccessToken(localStorage.getItem('spotifyToken'));
     const track = await spotify.getTrack(id)
     return track;
 }
 
+/** Get information about a Spotify user
+ * @param user_id The id of the user
+ * @return The user's data as the payload of the return object if successful, an error message if not
+ */
 export async function getSpotifyUser(user_id : string){
     spotify.setAccessToken(localStorage.getItem('spotifyToken'));
     try {
