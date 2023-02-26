@@ -12,93 +12,100 @@ import Link from "next/link"
 import Comment from "@/components/comment"
 
 type propsType = {
-    track: trackType;
-    action: string;
-    handleAction?: Function;
-    addCommentToTrack?: Function;
-    user?: spotifyUserType;
+  track: trackType;
+  action: string;
+  handleAction?: Function;
+  addCommentToTrack?: Function;
+  removeCommentFromTrack?: Function;
+  user: spotifyUserType;
 }
 
 /** A component that displays a song and its necessary buttons / icons for adding, deleting, adding comments or navigating to full song view */
-export default function Song({ track, action, handleAction, addCommentToTrack, user }: propsType) {
-    const [showComments, setShowComments] = useState(false)
-    const router = useRouter()
+export default function Song({ track, action, handleAction, addCommentToTrack, removeCommentFromTrack, user }: propsType) {
+  const [showComments, setShowComments] = useState(false)
+  const router = useRouter()
 
-    function Action() {
-        if (handleAction) {
-            if (action === "Remove") {
-                return <button onClick={() => { handleAction(track, action) }}><BsTrash /></button>
-            }
-            else {
-                return <button onClick={() => { handleAction(track, action) }} style={{ "cursor": "pointer", "fontSize": "20px"}}><MdPlaylistAdd /></button>
-            }
-        }
-        else {
-            let actionText = ""
-            let numberOfComments = 0
-            let last = ""
-            if (showComments) {
-                actionText = "Hide"
-            }
-            else {
-                actionText = "Show"
-            }
-            if (track.comments) {
-                numberOfComments = track.comments.filter(el => el.text).length
-            }
-            if (numberOfComments === 1) {
-                last = "comment"
-            }
-            else {
-                last = "comments"
-            }
-            let buttonText = actionText + " " + numberOfComments + " " + last
-            return numberOfComments > 0 ? 
-                <button onClick={() => setShowComments(!showComments)} style={{ "cursor": "pointer", "fontSize": "12px", "width": "100px"}}>
-                    {buttonText}
-                </button> : 
-                <></>
-        }
+  function Action() {
+    if (handleAction) {
+      if (action === "Remove") {
+        return <button onClick={() => { handleAction(track, action) }}><BsTrash /></button>
+      }
+      else {
+        return <button onClick={() => { handleAction(track, action) }} style={{ "cursor": "pointer", "fontSize": "20px" }}><MdPlaylistAdd /></button>
+      }
     }
-
-    function Comments() {
-        return <div className={styles.comment_container}>
-            {track.comments ? track.comments.map(comment =>
-                comment.text ?
-                    <Comment key={uuidv4()} comment={comment} />
-                    : null)
-                : null}
-        </div>
+    else {
+      let actionText = ""
+      let numberOfComments = 0
+      let last = ""
+      if (showComments) {
+        actionText = "Hide"
+      }
+      else {
+        actionText = "Show"
+      }
+      if (track.comments) {
+        numberOfComments = track.comments.filter(el => el.text).length
+      }
+      if (numberOfComments === 1) {
+        last = "comment"
+      }
+      else {
+        last = "comments"
+      }
+      let buttonText = actionText + " " + numberOfComments + " " + last
+      return numberOfComments > 0 ?
+        <button onClick={() => setShowComments(!showComments)} style={{ "cursor": "pointer", "fontSize": "12px", "width": "100px" }}>
+          {buttonText}
+        </button> :
+        <></>
     }
+  }
 
-    return <>
-        <div className={styles.song_container}>
-            {track.image ? <Image src={track.image} alt={track.album} width={70} height={70} /> : null}
-            <div className={styles.song_info}>
-                <p>{track.name} - {track.artist}
-                    <br></br>
-                    <i>{track.album}</i>
-                </p>
-            </div>
-            {action === "Remove" ? 
-                <CommentPopup 
-                    user={user} 
-                    track={track} 
-                    addCommentToTrack={addCommentToTrack} 
-                /> : null}
-            <Action />
-            {action === "View" ? 
-                <Link 
-                    href={{ pathname: `/tracks/${track.id}`, query: { _id: router.query._id } }}>
-                    <button 
-                        title={`Visit detailed page about ${track.name}`} 
-                        style={{ "cursor": "pointer", "width": "25px"}}>
-                        <CgMoreO />
-                    </button>
-                </Link> : null}
-        </div>
-        <div>
-            {showComments ? <Comments /> : null}
-        </div>
-    </>
+  function Comments() {
+    return <div className={styles.comment_container}>
+      {track.comments ? track.comments.map(comment =>
+        comment.text && removeCommentFromTrack ?
+          <Comment
+            key={uuidv4()}
+            comment={comment}
+            track={track}
+            removeCommentFromTrack={removeCommentFromTrack}
+            user={user}
+          />
+          : null)
+        : null}
+    </div>
+  }
+
+  return <>
+    <div className={styles.song_container}>
+      <div className={styles.song_details}>
+        {track.image ?
+          <Link href={{ pathname: `/tracks/${track.id}`, query: { _id: router.query._id } }}>
+            <Image src={track.image} alt={track.album} width={70} height={70} />
+          </Link> : null}
+        <Link
+          href={{ pathname: `/tracks/${track.id}`, query: { _id: router.query._id } }}><div className={styles.song_info}>
+            <p>{track.name} - {track.artist}
+              <br></br>
+              <i>{track.album}</i>
+            </p>
+          </div>
+        </Link>
+      </div>
+      <div className={styles.buttons}>
+        {action === "Remove" ?
+          <CommentPopup
+            user={user}
+            track={track}
+            addCommentToTrack={addCommentToTrack}
+          /> : null}
+        <Action />
+      </div>
+    </div>
+    <div>
+      {showComments ? <Comments /> : null}
+    </div>
+  </>
 }
