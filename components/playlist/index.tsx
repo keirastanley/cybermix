@@ -20,43 +20,7 @@ type propsObj = {
 export default function Playlist({ user, playlist, deletePlaylist, removeCommentFromTrack }: propsObj) {
   const router = useRouter()
 
-  return <div className={styles.playlist_container}>
-    <div className={styles.main_details_button}>
-      <Image
-        src={playlist.image}
-        alt="Image associated with the playlist on Spotify"
-        width={200}
-        height={200}
-      />
-      <div className={styles.main_details}>
-        <div className={styles.buttons}>
-          <Link href={`${router.query._id}/edit`}>
-            <button style={{ "fontSize": "25px" }}>
-              <CiEdit />
-            </button>
-          </Link>
-          <button onClick={() => deletePlaylist(playlist._id)}><BsTrash /></button>
-        </div>
-        <h1>{playlist.name}</h1>
-        <h3>{playlist.description}</h3>
-        <h3>
-          Made by {playlist.created_by} on {playlist.date.split(" ").slice(0, 4).join(" ")}
-        </h3>
-        <a href={playlist.link} className={styles.playlist_link}>
-          <BsSpotify />
-          Play on Spotify
-        </a>
-      </div>
-    </div>
-    <div className={styles.playlist_tracks}>
-      {playlist.tracks.length > 0 ? playlist.tracks.map(track =>
-        <Song
-          user={user}
-          track={track}
-          action="View"
-          key={uuidv4()}
-          removeCommentFromTrack={removeCommentFromTrack}
-        />) : null}
+            rel="noreferrer"
     </div>
   </div>
 }
