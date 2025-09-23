@@ -1,6 +1,11 @@
-## 💿 Cyber-Mix 💿
+# 💿 Cyber-Mix 💿
 
 A digital mixtape-making app powered by Spotify's API.
+
+## Current build
+
+🔗 [Link to current build](https://cybermix.vercel.app) - ⚠️ Use of site requires Spotify login. The site is still a work in progress so some features may not be working as expected.
+
 <img src="./screenshot-2025-09-23.png" width="500px" />
 
 <!-- Things to include
