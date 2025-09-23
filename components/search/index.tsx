@@ -2,17 +2,18 @@ import { SetStateAction, useState } from "react";
 import { searchTracksSpotify } from "@/functions/spotify";
 import { v4 as uuidv4 } from "uuid";
 import Song from "../song";
-import { trackType } from "@/data/types";
+import { spotifyUserType, trackType } from "@/data/types";
 import styles from "@/styles/search.module.css"
 import {BsSearch} from "react-icons/bs"
 import SearchBar from "../search-bar";
 
 type propsObj = {
-    handleAction: Function;
+  handleAction: Function;
+  user: spotifyUserType;
 }
 
 /** The section where users can search for songs and add them to their playlist when editing */
-export default function Search({handleAction} : propsObj){
+export default function Search({ user, handleAction }: propsObj) {
     const [query, setQuery] = useState("")
     const [results, setResults] = useState<trackType[]>([])
 
@@ -53,7 +54,7 @@ export default function Search({handleAction} : propsObj){
         />
         <div className={styles.search_results}>
             {results.length > 0 ? results.map(track => 
-                <Song track={track} action="Add song" handleAction={handleAction} key={uuidv4()}/>) : null}
+        <Song user={user} track={track} action="Add song" handleAction={handleAction} key={uuidv4()} />) : null}
         </div>
 </div>
 }
