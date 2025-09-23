@@ -1,15 +1,7 @@
-## 💫💿 Cyber-Mix 💿💫
-A mixtape-making app powered by Spotify's API. 
-<!-- 
-By [@keirastanley](https://github.com/keirastanley) & [@gregrutnam](https://github.com/gregrutnam) -->
+## 💿 Cyber-Mix 💿
 
-### Tech stack
-
-- TypeScript
-- Spotify API
-- MongoDB
-- Node.JS
-- Express
+A digital mixtape-making app powered by Spotify's API.
+<img src="./screenshot-2025-09-23.png" width="500px" />
 
 <!-- Things to include
 
